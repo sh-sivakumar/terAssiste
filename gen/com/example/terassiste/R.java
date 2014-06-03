@@ -23,10 +23,11 @@ public final class R {
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int logo_app=0x7f020001;
+        public static final int train=0x7f020002;
     }
     public static final class id {
         public static final int ScrollView01=0x7f080002;
-        public static final int action_settings=0x7f08000c;
+        public static final int action_settings=0x7f08000e;
         public static final int connecter=0x7f080008;
         public static final int fragment_main=0x7f080001;
         public static final int identifiant=0x7f080005;
@@ -34,8 +35,10 @@ public final class R {
         public static final int inscrire=0x7f080009;
         public static final int main_container=0x7f080000;
         public static final int pass=0x7f080007;
-        public static final int slide_menu_deco=0x7f08000a;
-        public static final int slide_menu_quit=0x7f08000b;
+        public static final int slide_menu_consult_evt=0x7f08000a;
+        public static final int slide_menu_create_evt=0x7f08000b;
+        public static final int slide_menu_deco=0x7f08000c;
+        public static final int slide_menu_quit=0x7f08000d;
         public static final int textIdentifiant=0x7f080004;
         public static final int textPass=0x7f080006;
     }

@@ -10,7 +10,6 @@ import com.example.terassiste.http.AsynJsonHttp;
 import com.example.terassiste.views.ViewActionBar;
 import com.example.terassiste.views.ViewMainActionBar;
 
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -24,14 +23,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+@TargetApi(Build.VERSION_CODES.KITKAT)
 @SuppressLint("NewApi")
 public class MainActivity extends FragmentActivity {
 
@@ -64,9 +61,9 @@ public class MainActivity extends FragmentActivity {
 	 * Backward-compatible version of {@link ActionBar#getThemedContext()} that simply returns the
 	 * {@link android.app.Activity} if <code>getThemedContext</code> is unavailable.
 	 */
-	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	@TargetApi(Build.VERSION_CODES.KITKAT)
 	private Context getActionBarThemedContextCompat() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			return getActionBar().getThemedContext();
 		} else {
 			return this;

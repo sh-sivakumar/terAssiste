@@ -8,6 +8,16 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/slide_menu_consult_evt"
+        android:text="Consulter les événements"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/slide_menu_create_evt"
+        android:text="Création d'un événement"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/slide_menu_deco"
         android:text="Déconnexion"/>
     <Button
