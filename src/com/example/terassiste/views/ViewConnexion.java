@@ -13,6 +13,6 @@ public class ViewConnexion extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_connexion);
+        setContentView(R.layout.fragment_connexion);
     }
 }

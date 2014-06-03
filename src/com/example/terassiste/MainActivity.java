@@ -26,6 +26,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -36,7 +38,7 @@ public class MainActivity extends FragmentActivity {
 	private DrawerLayout	_drawerLayout;
 	public static final int	FRAGMENT_MAIN			= 0;
 	public static final int	FRAGMENT_CONNEXION		= 1;
-
+	 
 	
 	@SuppressLint("NewApi")
 	@Override
@@ -121,9 +123,7 @@ public class MainActivity extends FragmentActivity {
 		Log.i("LJ", "Open slide menu");
 	}
 	
-    public void boutonConnexion(View v) {
-    	String TAG = "ViewConnexion";
-    	String URL = "http://terassistee.netai.net/test.php";
+    public void boutonConnexion(View v, String TAG, String URL) {
     	
     	TextView id = (TextView) findViewById(R.id.textIdentifiant);
     	TextView pass = (TextView) findViewById(R.id.textPass);
@@ -150,5 +150,5 @@ public class MainActivity extends FragmentActivity {
 			e.printStackTrace();
 		}
     }
-
+    
 }
