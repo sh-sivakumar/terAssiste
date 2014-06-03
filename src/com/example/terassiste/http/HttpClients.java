@@ -5,20 +5,25 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.GZIPInputStream;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.util.Log;
 
-public class HttpClient {
+public class HttpClients {
 	private static final String TAG = "HttpClient";
 
 	public static JSONObject SendHttpPost(String URL, JSONObject jsonObjSend) {
 
+		JSONObject errorJSONobj = new JSONObject();
+		String errorMessage = "";
 		try {
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpPost httpPostRequest = new HttpPost(URL);
@@ -45,21 +50,28 @@ public class HttpClient {
 				}
 
 				String resultString= convertStreamToString(instream);
+				//Log.i(TAG,"<JSONObject>\n"+resultString+"\n</JSONObject>");
 				instream.close();
-				resultString = resultString.substring(1,resultString.length()-1); 
-
+				resultString = resultString.substring(0,resultString.length()-1); 
 				JSONObject jsonObjRecv = new JSONObject(resultString);
-				Log.i(TAG,"<JSONObject>\n"+jsonObjRecv.toString()+"\n</JSONObject>");
-
 				return jsonObjRecv;
-			} 
+			}
 
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			errorMessage = e.getMessage();
 		}
-		return null;
+		
+		try {
+			errorJSONobj.putOpt("error", errorMessage);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return errorJSONobj;
 	}
 
 

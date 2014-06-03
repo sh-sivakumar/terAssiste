@@ -33,7 +33,7 @@
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/Identifiant"
+            android:id="@+id/identifiant"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" 
@@ -54,7 +54,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/Pass"
+            android:id="@+id/pass"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -65,7 +65,7 @@
         </EditText>
 
         <Button
-            android:id="@+id/Button1"
+            android:id="@+id/connecter"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Se connecter"
@@ -74,7 +74,7 @@
         </Button>
 
         <Button
-            android:id="@+id/Button2"
+            android:id="@+id/inscrire"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Créer un compte"
