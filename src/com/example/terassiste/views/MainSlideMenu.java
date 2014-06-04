@@ -4,6 +4,7 @@ import com.example.terassiste.MainActivity;
 import com.example.terassiste.R;
 import com.example.terassiste.fragments.FragmentConnexion;
 import com.example.terassiste.fragments.FragmentListeEvt;
+import com.example.terassiste.fragments.TestFragmentListeEvt;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -28,6 +29,7 @@ public class MainSlideMenu extends LinearLayout implements OnClickListener{
 		this.findViewById(R.id.slide_menu_deco).setOnClickListener(this);
 		this.findViewById(R.id.slide_menu_quit).setOnClickListener(this);
 		this.findViewById(R.id.slide_menu_consult_evt).setOnClickListener(this);
+		this.findViewById(R.id.slide_menu_create_evt).setOnClickListener(this);
 	}
 
 	@Override
@@ -40,6 +42,9 @@ public class MainSlideMenu extends LinearLayout implements OnClickListener{
 				break;
 			case R.id.slide_menu_consult_evt:
 				this._mainActivity.switchFragment(new FragmentListeEvt());
+				break;	
+			case R.id.slide_menu_create_evt:
+				this._mainActivity.switchFragment(new TestFragmentListeEvt());
 				break;	
 			case R.id.slide_menu_quit:
 				System.exit(0);

@@ -2,7 +2,6 @@ package com.example.terassiste.fragments;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,6 +122,9 @@ public class FragmentListeEvt extends Fragment {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
 			Log.i("LG", "Select main item position: " + position + " with ID:" + id + ", item info:");
+			
+			FragmentDetailEvt detail = new FragmentDetailEvt();
+			FragmentListeEvt.this._parentActivity.switchFragment(detail);
 			
 		}
 

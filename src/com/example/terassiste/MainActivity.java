@@ -38,6 +38,7 @@ public class MainActivity extends FragmentActivity {
 	private DrawerLayout	_drawerLayout;
 	public static final int	FRAGMENT_MAIN			= 0;
 	public static final int	FRAGMENT_CONNEXION		= 1;
+	public static final int	FRAGMENT_EVTLIST		= 2;
 	 
 	
 	@SuppressLint("NewApi")
