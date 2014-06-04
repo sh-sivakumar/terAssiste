@@ -143,10 +143,8 @@ public class MainActivity extends FragmentActivity {
 			JSONObject jsonReturn = thread.get();
 			Log.i(TAG, "test: "+jsonReturn.toString());
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
