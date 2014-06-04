@@ -16,26 +16,19 @@
 
         <ImageView
             android:id="@+id/childImage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_margin="5dp"
-            android:background="@drawable/ic_launcher"
-            android:contentDescription="@string/hello_world" />
+            android:background="@drawable/arrow" />
 
         <TextView
             android:id="@+id/pmr_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="@string/hello_world"
             android:textSize="16sp"
             android:textColor="#1919A3"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/white" />
 
 </LinearLayout>
