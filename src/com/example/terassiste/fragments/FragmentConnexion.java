@@ -1,5 +1,7 @@
 package com.example.terassiste.fragments;
 
+import org.json.JSONException;
+
 import com.example.terassiste.MainActivity;
 import com.example.terassiste.R;
 
@@ -12,12 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 
-public class FragmentConnexion extends Fragment implements OnClickListener{
+public class FragmentConnexion extends Fragment implements OnClickListener {
 	private static final String TAG = "ViewConnexion";
 	private static final String URL = "http://terassistee.netai.net/test.php";
 	
 	private MainActivity	_mainActivity;
-	private View _view;
+	private View 			_view;
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -38,7 +40,11 @@ public class FragmentConnexion extends Fragment implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.connecter:
-			this._mainActivity.boutonConnexion(v, TAG, URL);
+			try {
+				this._mainActivity.boutonConnexion(v, TAG, URL);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 			break;
 		}
 		

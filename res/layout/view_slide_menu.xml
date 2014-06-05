@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="#D7D7E8">
+    android:background="@drawable/background_menu">
 
     <Button
         android:layout_width="match_parent"

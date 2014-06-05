@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.terassiste.fragments.FragmentConnexion;
+import com.example.terassiste.fragments.FragmentListeEvt;
 import com.example.terassiste.http.AsynJsonHttp;
 import com.example.terassiste.views.ViewActionBar;
 import com.example.terassiste.views.ViewMainActionBar;
@@ -125,7 +126,7 @@ public class MainActivity extends FragmentActivity {
 		Log.i("LJ", "Open slide menu");
 	}
 	
-    public void boutonConnexion(View v, String TAG, String URL) {
+    public void boutonConnexion(View v, String TAG, String URL) throws JSONException {
     	
     	TextView id = (TextView) findViewById(R.id.textIdentifiant);
     	TextView pass = (TextView) findViewById(R.id.textPass);
@@ -133,8 +134,8 @@ public class MainActivity extends FragmentActivity {
     	JSONObject jsonObject= new JSONObject();
     	
 		try {
-			jsonObject.put("id", id.getText());
-            jsonObject.put("pass", pass.getText());
+			jsonObject.put("login", id.getText());
+            jsonObject.put("password", pass.getText());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -143,6 +144,11 @@ public class MainActivity extends FragmentActivity {
 		thread.execute(jsonObject);
 		try {
 			JSONObject jsonReturn = thread.get();
+
+			if(jsonReturn.getBoolean("result")) {
+				switchFragment(new FragmentListeEvt());
+			}
+
 			Log.i(TAG, "test: "+jsonReturn.toString());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
