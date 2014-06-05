@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identité du PMR"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <EditText
+        android:id="@+id/textNom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       	android:hint="Nom"
+        android:ems="10" >
+        <requestFocus />
+    </EditText>
+    <EditText
+        android:id="@+id/textPrenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prénom"
+        android:ems="10" />
+    
+  	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fiche itinéraire"
+        android:textStyle="bold"
+        android:paddingTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+  	<EditText
+        android:id="@+id/textNumTrain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Numéro du train"
+        android:ems="10" />
+
+  	<TextView
+  	    android:id="@+id/textView1"
+  	    android:layout_width="wrap_content"
+  	    android:layout_height="wrap_content"
+  	  	android:textStyle="bold"
+        android:paddingTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+  	    android:text="Départ" />
+
+  	<LinearLayout
+  	    android:layout_width="match_parent"
+  	    android:layout_height="wrap_content" >
+  		<EditText
+  		    android:id="@+id/gareDep"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="wrap_content"
+  		    android:layout_weight="1"
+  		    android:hint="Gare"
+  		    android:ems="10" />
+
+  		<EditText
+  		    android:id="@+id/heureDep"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="wrap_content"
+  		    android:layout_weight="1"
+  		    android:hint="Heure"
+  		    android:ems="10"
+  		    android:inputType="time" />
+  	</LinearLayout>
+
+  	<TextView
+  	    android:id="@+id/textView2"
+  	    android:layout_width="wrap_content"
+  	    android:layout_height="wrap_content"
+  	   	android:textStyle="bold"
+        android:paddingTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+  	    android:text="Arrivée" />
+  	
+  	  	<LinearLayout
+  	    android:layout_width="match_parent"
+  	    android:layout_height="wrap_content" >
+  		<EditText
+  		    android:id="@+id/gareArr"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="wrap_content"
+  		    android:layout_weight="1"
+  		    android:hint="Gare"
+  		    android:ems="10" />
+
+  		<EditText
+  		    android:id="@+id/heureArr"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="wrap_content"
+  		    android:layout_weight="1"
+  		    android:hint="Heure"
+  		    android:ems="10"
+  		    android:inputType="time" />
+  	</LinearLayout>
+
+   	<Button
+		android:id="@+id/connecter"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:text="Suivant"
+       	android:padding="10dp"
+       	android:layout_marginLeft="215dp"
+       	android:layout_marginTop="40dp"
+       	android:background="@drawable/list_selector" >
+ 	</Button>
+
+</LinearLayout>

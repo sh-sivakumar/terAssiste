@@ -28,7 +28,7 @@ public class FragmentCreateEvt extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		this._view = inflater.inflate(R.layout.fragment_create_evt, container, false);
+		this._view = inflater.inflate(R.layout.fragment_create_evt_one, container, false);
 
 		return this._view;
 	}

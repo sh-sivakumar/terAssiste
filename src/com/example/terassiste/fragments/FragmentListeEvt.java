@@ -144,6 +144,10 @@ public class FragmentListeEvt extends Fragment {
 	
 	private class OnMainItemClickListener implements OnClickListener {
 
+		public OnMainItemClickListener(String string) {
+			Log.i("LG", "TEST = " + string);
+		}
+
 		@Override
 		public void onClick(View v) {
 			Log.i("LG", "TEST = Bouton clique ");
@@ -183,7 +187,7 @@ public class FragmentListeEvt extends Fragment {
                 
                 LinearLayout test = (LinearLayout) convertView.findViewById(R.id.btPMR);
                 
-                test.setOnClickListener(new OnMainItemClickListener());
+                test.setOnClickListener(new OnMainItemClickListener(name.toString()));
                 
                 
                 convertView.setTag(childViewHolder);
