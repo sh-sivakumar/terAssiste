@@ -44,9 +44,7 @@ public class FragmentListeEvt extends Fragment {
 	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        //elv.setAdapter(new SavedTabsListAdapter(this._mainActivity));
-        
+    	
         super.onCreate(savedInstanceState);
         View _view = inflater.inflate(R.layout.fragment_liste_evt, null);
         this.expandableList = (ExpandableListView) _view.findViewById(R.id.list);
@@ -86,6 +84,17 @@ public class FragmentListeEvt extends Fragment {
 		}
 		jsonPMR.put(pmr2);
 		
+		JSONArray jsonPMR2 = new JSONArray();
+		JSONObject pmr3 = new JSONObject();
+		try {
+			pmr3.put("nom", "okman");
+			pmr3.put("prenom", "oui");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		jsonPMR2.put(pmr3);
+
+		
 		JSONArray jsonArr = new JSONArray();
 		JSONObject obj1 = new JSONObject();
 		try {
@@ -100,7 +109,7 @@ public class FragmentListeEvt extends Fragment {
 		try {
 			obj2.put("train", "1001");
 			obj2.put("nbPMR", 1);
-			obj2.put("pmr", jsonPMR);
+			obj2.put("pmr", jsonPMR2);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -108,7 +117,7 @@ public class FragmentListeEvt extends Fragment {
 		JSONObject obj3 = new JSONObject();
 		try {
 			obj3.put("train", "2014DW");
-			obj3.put("nbPMR", 1);
+			obj3.put("nbPMR", 2);
 			obj3.put("pmr", jsonPMR);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -143,14 +152,19 @@ public class FragmentListeEvt extends Fragment {
 	}
 	
 	private class OnMainItemClickListener implements OnClickListener {
-
-		public OnMainItemClickListener(String string) {
-			Log.i("LG", "TEST = " + string);
+		String train;
+		String nom;
+		String prenom;
+		
+		public OnMainItemClickListener(String train, String nom, String prenom) {
+			this.train = train;
+			this.nom = nom;
+			this.prenom = prenom;
 		}
 
 		@Override
 		public void onClick(View v) {
-			Log.i("LG", "TEST = Bouton clique ");
+			Log.i("LG", "TEST = Bouton clique ->" + nom + " " + prenom + " - train: "+ train);
 			
 		}
 	}
@@ -185,10 +199,7 @@ public class FragmentListeEvt extends Fragment {
      
                 childViewHolder.textPmrName = (TextView) convertView.findViewById(R.id.pmr_name);
                 
-                LinearLayout test = (LinearLayout) convertView.findViewById(R.id.btPMR);
-                
-                test.setOnClickListener(new OnMainItemClickListener(name.toString()));
-                
+                clickBoutonElmt(groupPosition, childPosition, convertView);
                 
                 convertView.setTag(childViewHolder);
             } else {
@@ -198,6 +209,17 @@ public class FragmentListeEvt extends Fragment {
             childViewHolder.textPmrName.setText(name.toString());
      
             return convertView;
+        }
+        
+        public void clickBoutonElmt(int groupPosition, int childPosition, View convertView) {
+        	Map<String, Object> map = (Map<String, Object>) groupes.get(groupPosition);
+        	String train = map.get("train").toString();
+        	String nom = getNomPMR(groupPosition, childPosition);
+			String prenom = getPrenomPMR(groupPosition, childPosition);
+			
+            LinearLayout layout = (LinearLayout) convertView.findViewById(R.id.btPMR);
+            layout.setOnClickListener(new OnMainItemClickListener(train, nom, prenom));
+        	
         }
      
         public Object getGroup(int gPosition) {
@@ -255,6 +277,12 @@ public class FragmentListeEvt extends Fragment {
         
 		@Override
 		public Object getChild(int groupPosition, int childPosition) {
+			String nom = getNomPMR(groupPosition, childPosition);
+			String prenom = getPrenomPMR(groupPosition, childPosition);
+			return nom + " " + prenom;
+		}
+		
+		public String getNomPMR(int groupPosition, int childPosition) {
 			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
 			JSONObject obj = null;
 			try {
@@ -264,12 +292,28 @@ public class FragmentListeEvt extends Fragment {
 			}
 			try {
 				String nom = obj.getString("nom");
-				String prenom = obj.getString("prenom");
-				return nom + " " + prenom;
+				return nom;
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			return pmr;
+			return null;
+		}
+		
+		public String getPrenomPMR(int groupPosition, int childPosition) {
+			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
+			JSONObject obj = null;
+			try {
+				obj = pmr.getJSONObject(childPosition);
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				String prenom = obj.getString("prenom");
+				return prenom;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
 		}
 
 		@Override
