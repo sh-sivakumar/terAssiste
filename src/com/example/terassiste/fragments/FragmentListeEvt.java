@@ -69,16 +69,16 @@ public class FragmentListeEvt extends Fragment {
 		JSONArray jsonPMR = new JSONArray();
 		JSONObject pmr1 = new JSONObject();
 		try {
-			pmr1.put("nom", "xavier");
-			pmr1.put("prenom", "x");
+			pmr1.put("nom", "Xavier");
+			pmr1.put("prenom", "XXX");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		jsonPMR.put(pmr1);
 		JSONObject pmr2 = new JSONObject();
 		try {
-			pmr2.put("nom", "x");
-			pmr2.put("prenom", "xavier");
+			pmr2.put("nom", "XXX");
+			pmr2.put("prenom", "Xavier");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -87,8 +87,8 @@ public class FragmentListeEvt extends Fragment {
 		JSONArray jsonPMR2 = new JSONArray();
 		JSONObject pmr3 = new JSONObject();
 		try {
-			pmr3.put("nom", "okman");
-			pmr3.put("prenom", "oui");
+			pmr3.put("nom", "Okman");
+			pmr3.put("prenom", "Oui");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -165,7 +165,7 @@ public class FragmentListeEvt extends Fragment {
 		@Override
 		public void onClick(View v) {
 			Log.i("LG", "TEST = Bouton clique ->" + nom + " " + prenom + " - train: "+ train);
-			
+			_mainActivity.switchFragment(new FragmentDetailEvt(nom, prenom, train));
 		}
 	}
     
@@ -194,17 +194,16 @@ public class FragmentListeEvt extends Fragment {
             ChildViewHolder childViewHolder;
             if (convertView == null) {
                 childViewHolder = new ChildViewHolder();
-     
                 convertView = inflater.inflate(R.layout.fragment_liste_evt_pmr, null);
-     
+    
                 childViewHolder.textPmrName = (TextView) convertView.findViewById(R.id.pmr_name);
                 
-                clickBoutonElmt(groupPosition, childPosition, convertView);
-                
-                convertView.setTag(childViewHolder);
             } else {
                 childViewHolder = (ChildViewHolder) convertView.getTag();
             }
+            
+            clickBoutonElmt(groupPosition, childPosition, convertView);
+            convertView.setTag(childViewHolder);
      
             childViewHolder.textPmrName.setText(name.toString());
      

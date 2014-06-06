@@ -3,7 +3,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical" >
-    
+    android:orientation="vertical"
+    android:padding="30dp" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Détail de l&apos;événement"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/name_pmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PMR : Mr Xavier Xxxx" />
+
+    <TextView
+        android:id="@+id/name_agent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouté par Agent XXX XXX" />
+
+    <TextView
+        android:id="@+id/num_train"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Train n° 45XT" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Départ"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gare_dep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paris " />
+
+            <TextView
+                android:id="@+id/heure_dep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15h55" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Arrivée"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gare_arr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saint Julien du Sault" />
+
+            <TextView
+                android:id="@+id/heure_arr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16h50" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+  		android:paddingTop="30dp"
+        android:orientation="vertical" >
+        
+       	<TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Positionnement"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>
