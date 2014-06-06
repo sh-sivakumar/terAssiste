@@ -41,7 +41,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.suivant:
-			checkForm();
+			boolean suite = checkForm();
 			//Fragment ajout de la place (avec le plan)
 			//this._parentActivity.switchFragment(new FragmentCreateEvtTwo());
 			break;
@@ -50,26 +50,30 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	}
 	
 	public boolean checkForm() {
+		boolean check = true;
     	TextView heureDep = (TextView) this._view.findViewById(R.id.heureDep);
     	TextView heureArr = (TextView) this._view.findViewById(R.id.heureArr);
 
     	if(!checkHours(heureDep.getText().toString()) && heureDep.getText().toString().length()>0) {
     		heureDep.setTextColor(Color.RED);
+    		check = false;
     	} else {
     		heureDep.setTextColor(Color.BLACK);
     	}
     	
     	if(!checkHours(heureArr.getText().toString()) && heureArr.getText().toString().length()>0) {
     		heureArr.setTextColor(Color.RED);
+    		check = false;
     	} else {
     		heureArr.setTextColor(Color.BLACK);
     	}
         
-		return false;
+		return check;
 	}
 	
 	public boolean checkHours(String heure) {
 		boolean trouve = (heure.indexOf(":") != -1);
+		
 		if(trouve) {
 			String[] sep = heure.split(":");
 			if(sep.length == 2) {
@@ -80,6 +84,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 				}
 			}
 		}
+		
 		return false;
 	}
 	
