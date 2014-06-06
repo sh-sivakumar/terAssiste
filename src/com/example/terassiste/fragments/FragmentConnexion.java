@@ -1,9 +1,13 @@
 package com.example.terassiste.fragments;
 
+import java.util.concurrent.ExecutionException;
+
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.example.terassiste.MainActivity;
 import com.example.terassiste.R;
+import com.example.terassiste.http.AsynJsonHttp;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 public class FragmentConnexion extends Fragment implements OnClickListener {
 	private static final String TAG = "ViewConnexion";
@@ -41,7 +46,7 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 		switch(v.getId()){
 		case R.id.connecter:
 			try {
-				this._mainActivity.boutonConnexion(v, TAG, URL);
+				boutonConnexion(v);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -49,4 +54,35 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 		}
 		
 	}
+	
+	public void boutonConnexion(View v) throws JSONException {
+    	
+    	TextView id = (TextView) this._view.findViewById(R.id.textIdentifiant);
+    	TextView pass = (TextView) this._view.findViewById(R.id.textPass);
+    	
+    	JSONObject jsonObject= new JSONObject();
+    	
+		try {
+			jsonObject.put("login", id.getText());
+            jsonObject.put("password", pass.getText());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		AsynJsonHttp thread = new AsynJsonHttp(URL);
+		thread.execute(jsonObject);
+		try {
+			JSONObject jsonReturn = thread.get();
+
+			if(jsonReturn.getBoolean("result")) {
+				this._mainActivity.switchFragment(new FragmentListeEvt());
+			}
+
+			Log.i(TAG, "test: "+jsonReturn.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+    }
 }

@@ -125,36 +125,5 @@ public class MainActivity extends FragmentActivity {
 		this._drawerLayout.openDrawer(Gravity.LEFT);
 		Log.i("LJ", "Open slide menu");
 	}
-	
-    public void boutonConnexion(View v, String TAG, String URL) throws JSONException {
-    	
-    	TextView id = (TextView) findViewById(R.id.textIdentifiant);
-    	TextView pass = (TextView) findViewById(R.id.textPass);
-    	
-    	JSONObject jsonObject= new JSONObject();
-    	
-		try {
-			jsonObject.put("login", id.getText());
-            jsonObject.put("password", pass.getText());
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
-		AsynJsonHttp thread = new AsynJsonHttp(URL);
-		thread.execute(jsonObject);
-		try {
-			JSONObject jsonReturn = thread.get();
-
-			if(jsonReturn.getBoolean("result")) {
-				switchFragment(new FragmentListeEvt());
-			}
-
-			Log.i(TAG, "test: "+jsonReturn.toString());
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-    }
     
 }
