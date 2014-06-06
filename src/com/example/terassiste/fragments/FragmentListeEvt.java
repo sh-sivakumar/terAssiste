@@ -55,17 +55,23 @@ public class FragmentListeEvt extends Fragment {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
-		ELVAdapter adapter = new ELVAdapter(inflater, dataCache);
-
-		expandableList.setAdapter(adapter);
-        
+		
+		if(dataCache != null) {
+			ELVAdapter adapter = new ELVAdapter(inflater, dataCache);
+			expandableList.setAdapter(adapter);
+		} else {
+			LinearLayout layout = (LinearLayout) _view.findViewById(R.id.layout_background);
+			layout.setBackground(getResources().getDrawable(R.drawable.aucun_evt));
+		}
+		
         return _view;
     }
     
 	public List<Map<String, Object>> fetchAllData() throws JSONException {
 		
+		JSONObject object = new JSONObject();
 		/* ----- Debut : Test JSON ----- */
+		
 		JSONArray jsonPMR = new JSONArray();
 		JSONObject pmr1 = new JSONObject();
 		try {
@@ -123,7 +129,7 @@ public class FragmentListeEvt extends Fragment {
 			e.printStackTrace();
 		}
 		jsonArr.put(obj3);
-		JSONObject object = new JSONObject();
+		
 		try {
 			object.put("result", true);
 		    object.put("events", jsonArr);
