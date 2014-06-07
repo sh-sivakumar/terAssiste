@@ -16,9 +16,8 @@ public class AsynJsonHttp extends AsyncTask<JSONObject, Integer, JSONObject>{
 	
 	@Override
 	protected JSONObject doInBackground(JSONObject... params) {
-		// TODO Auto-generated method stub
-
 		JSONObject jsonRec = HttpClients.SendHttpPost(url, params[0]);
+		
 		return jsonRec;
 	}
 	

@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 public class FragmentConnexion extends Fragment implements OnClickListener {
 	private static final String TAG = "ViewConnexion";
-	private static final String URL = "http://terassistee.netai.net/test.php";
+	private static final String URL = "http://terassistee.netai.net/connect.php";
 	
 	private MainActivity	_mainActivity;
 	private View 			_view;
@@ -75,7 +75,7 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 		thread.execute(jsonObject);
 		try {
 			JSONObject jsonReturn = thread.get();
-
+			Log.i(TAG, "test: "+jsonReturn.toString());
 			if(jsonReturn.getBoolean("result")) {
 				this._mainActivity.switchFragment(new FragmentListeEvt());
 			}
