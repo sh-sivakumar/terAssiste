@@ -14,7 +14,8 @@
             android:orientation="vertical"
             android:id="@+id/fragment_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" ></LinearLayout>
+            android:layout_height="match_parent" >
+        </LinearLayout>
 
         <com.example.terassiste.views.MainSlideMenu
             android:layout_width="240dp"

@@ -1,15 +1,6 @@
 package com.example.terassiste;
 
-import java.util.concurrent.ExecutionException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.example.terassiste.fragments.FragmentConnexion;
-import com.example.terassiste.fragments.FragmentListeEvt;
-import com.example.terassiste.http.AsynJsonHttp;
-import com.example.terassiste.views.ViewActionBar;
-import com.example.terassiste.views.ViewMainActionBar;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -26,15 +17,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.KITKAT)
 @SuppressLint("NewApi")
 public class MainActivity extends FragmentActivity {
 
+	public ActionBar 		actionBar;
+	
 	private FragmentManager	_fm;
 	private DrawerLayout	_drawerLayout;
 	public static final int	FRAGMENT_MAIN			= 0;
@@ -50,13 +39,11 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		this._drawerLayout = (DrawerLayout) findViewById(R.id.main_container);
 
-		final ActionBar actionBar = getActionBar();
-		View mainActionBar = new ViewMainActionBar(this);
+		this.actionBar = getActionBar();
+		
 		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setDisplayShowCustomEnabled(true);
-
-		actionBar.setCustomView(mainActionBar);
 
 		this._fm = getSupportFragmentManager();
 		this.switchFragment(new FragmentConnexion());
@@ -105,15 +92,10 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void switchFragment(Fragment fragment) {
-
 		android.support.v4.app.FragmentTransaction transaction = this._fm.beginTransaction();
 		transaction.replace(R.id.fragment_main, fragment);
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		transaction.commit();
-	}
-	
-	public void switchActionBar(ViewActionBar actionBar){
-		this.getActionBar().setCustomView(actionBar);
 	}
 
 	public void closeSlideMenu() {
@@ -125,5 +107,5 @@ public class MainActivity extends FragmentActivity {
 		this._drawerLayout.openDrawer(Gravity.LEFT);
 		Log.i("LJ", "Open slide menu");
 	}
-    
+	    
 }

@@ -46,6 +46,7 @@ public class FragmentListeEvt extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     	
         super.onCreate(savedInstanceState);
+        this._mainActivity.actionBar.setDisplayHomeAsUpEnabled(true);
         View _view = inflater.inflate(R.layout.fragment_liste_evt, container, false);
         this.expandableList = (ExpandableListView) _view.findViewById(R.id.list);
         

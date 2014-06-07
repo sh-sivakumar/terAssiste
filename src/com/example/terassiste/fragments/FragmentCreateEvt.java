@@ -32,8 +32,10 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		this._parentActivity.actionBar.setDisplayHomeAsUpEnabled(true);
 		this._view = inflater.inflate(R.layout.fragment_create_evt, container, false);
 		this._view.findViewById(R.id.suivant).setOnClickListener(this);
+	
 		return this._view;
 	}
 	
