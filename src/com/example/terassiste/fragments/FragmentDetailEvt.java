@@ -42,6 +42,7 @@ public class FragmentDetailEvt extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		this._parentActivity.actionBar.setDisplayHomeAsUpEnabled(true);
+		this._parentActivity.menuOk = true;
 		this._view = inflater.inflate(R.layout.fragment_evt_detail, container, false);
 		
 		/* ----- Debut : Test JSON ----- */

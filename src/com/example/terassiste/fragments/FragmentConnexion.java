@@ -35,8 +35,9 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		this._view = inflater.inflate(R.layout.fragment_connexion, container, false);
 		this._mainActivity.actionBar.setDisplayHomeAsUpEnabled(false);
+		this._mainActivity.menuOk = false;
+		this._view = inflater.inflate(R.layout.fragment_connexion, container, false);
 		this._view.findViewById(R.id.connecter).setOnClickListener(this);
 		
 		return this._view;

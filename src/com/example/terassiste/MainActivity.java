@@ -23,6 +23,7 @@ import android.view.MenuItem;
 public class MainActivity extends FragmentActivity {
 
 	public ActionBar 		actionBar;
+	public boolean 			menuOk 					= false;
 	
 	private FragmentManager	_fm;
 	private DrawerLayout	_drawerLayout;
@@ -70,16 +71,18 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Log.i("LJ", "Click On:" + item.getTitle() + "-" + item.getItemId());
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				if (this._drawerLayout.isDrawerOpen(Gravity.LEFT)) {
-					this._drawerLayout.closeDrawer(Gravity.LEFT);
-				} else
-					this._drawerLayout.openDrawer(Gravity.LEFT);
-				break;
-
-			default:
-				break;
+		if(menuOk) { 
+			switch (item.getItemId()) {
+				case android.R.id.home:
+					if (this._drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+						this._drawerLayout.closeDrawer(Gravity.LEFT);
+					} else
+						this._drawerLayout.openDrawer(Gravity.LEFT);
+					break;
+	
+				default:
+					break;
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -107,5 +110,5 @@ public class MainActivity extends FragmentActivity {
 		this._drawerLayout.openDrawer(Gravity.LEFT);
 		Log.i("LJ", "Open slide menu");
 	}
-	    
+	   
 }
