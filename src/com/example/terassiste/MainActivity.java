@@ -42,14 +42,14 @@ public class MainActivity extends FragmentActivity {
 
 		this.actionBar = getActionBar();
 		
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setDisplayHomeAsUpEnabled(false);
-		actionBar.setDisplayShowCustomEnabled(true);
+		this.actionBar.setDisplayShowTitleEnabled(false);
+		this.actionBar.setDisplayHomeAsUpEnabled(false);
+		this.actionBar.setDisplayShowCustomEnabled(true);
 
 		this._fm = getSupportFragmentManager();
 		this.switchFragment(new FragmentConnexion());
 	}
-
+	
 	/**
 	 * Backward-compatible version of {@link ActionBar#getThemedContext()} that simply returns the
 	 * {@link android.app.Activity} if <code>getThemedContext</code> is unavailable.
