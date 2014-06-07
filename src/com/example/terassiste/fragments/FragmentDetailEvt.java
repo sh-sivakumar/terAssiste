@@ -12,9 +12,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class FragmentDetailEvt extends Fragment {
+public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	private String nom;
 	private String prenom;
 	private String train;
@@ -44,6 +45,8 @@ public class FragmentDetailEvt extends Fragment {
 		this._parentActivity.actionBar.setDisplayHomeAsUpEnabled(true);
 		this._parentActivity.menuOk = true;
 		this._view = inflater.inflate(R.layout.fragment_evt_detail, container, false);
+		
+		this._view.findViewById(R.id.evt_modif).setOnClickListener(this);
 		
 		/* ----- Debut : Test JSON ----- */
 		JSONObject jsonReturn = new JSONObject();
@@ -87,6 +90,16 @@ public class FragmentDetailEvt extends Fragment {
 		}
 		
 		return this._view;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()){
+		case R.id.evt_modif:
+			this._parentActivity.switchFragment(new FragmentModifEvt());
+			break;
+		}
+		
 	}
 	
 }

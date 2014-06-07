@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	
-	private View 			_view;
-	private MainActivity 	_parentActivity;
+	protected View 			_view;
+	protected MainActivity 	_parentActivity;
 	
 	@Override
 	public void onAttach(Activity activity) {
