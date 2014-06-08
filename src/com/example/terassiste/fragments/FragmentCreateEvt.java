@@ -2,9 +2,12 @@ package com.example.terassiste.fragments;
 
 import com.example.terassiste.R;
 import com.example.terassiste.MainActivity;
+import com.example.terassiste.PlaceSelect.OnPositionSelectOneShotListener;
+import com.example.terassiste.metier.Evenement;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,12 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	
 	protected View 			_view;
 	protected MainActivity 	_parentActivity;
+	protected Point _oldPosition = null;
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -45,10 +50,26 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 		switch(v.getId()){
 		case R.id.suivant:
 			boolean suite = checkForm();
-			this._parentActivity.SelectPlaceOnTheMap();
+			if(suite){
+				this._parentActivity.ViewPlaceOnTheMap(new OnPositionSelectOneShotListener(){
+
+					@Override
+					public void OnPositionSelect(Point position) {
+						int x = position.x;
+						int y = position.y;
+			    		Log.i("LG", "Select back point on the map:"+x+";"+y);
+						Evenement newEvent = FragmentCreateEvt.this.genereEvenement();
+						//et ensuite on enregistre cet evenement sur le serveur
+			    		
+					}}, this._oldPosition, false);
+			}
 			break;
 		}
 		
+	}
+	
+	public Evenement genereEvenement(){
+		return null;
 	}
 	
 	public boolean checkForm() {
@@ -89,6 +110,5 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 		
 		return false;
 	}
-	
 }
 

@@ -1,5 +1,6 @@
 package com.example.terassiste;
 
+import com.example.terassiste.PlaceSelect.OnPositionSelectOneShotListener;
 import com.example.terassiste.fragments.FragmentConnexion;
 
 import android.annotation.SuppressLint;
@@ -34,7 +35,7 @@ public class MainActivity extends FragmentActivity {
 	public static final int	FRAGMENT_EVT_LIST		= 2;
 	public static final int	FRAGMENT_CREATE_EVT		= 3;
 
-    Point lastPoint = null;
+    OnPositionSelectOneShotListener positionSelectListener = null;
 	
 	@SuppressLint("NewApi")
 	@Override
@@ -59,10 +60,10 @@ public class MainActivity extends FragmentActivity {
     	if(resultCode == RESULT_OK){
     		int x = data.getIntExtra("x", Integer.MIN_VALUE);
     		int y = data.getIntExtra("y", Integer.MIN_VALUE);
-    		if(x != Integer.MAX_VALUE && y != Integer.MIN_VALUE){
-    			Log.i("LG", "Select point on the map:"+x+";"+y);
+    		if(this.positionSelectListener != null){
+    			this.positionSelectListener.OnPositionSelect(new Point(x,y));
     		}
-    		this.lastPoint = new Point(x,y);
+    		this.positionSelectListener = null;
     	}
     }
 	
@@ -128,17 +129,19 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 
-    public void SelectPlaceOnTheMap(){
+    public void ViewPlaceOnTheMap(OnPositionSelectOneShotListener listener, Point oldPoint, boolean readOnly){
 		Intent switchActivityIntent = new Intent(this, SelectPlaceActivity.class);
 		int requestCode;
-    	if(lastPoint == null){
+    	if(oldPoint == null){
     		requestCode = REQUEST_CODE.GET_POINT_ON_MAP;
 		}else{
 			requestCode = REQUEST_CODE.MODIFIE_POINT_ON_MAP;
-			switchActivityIntent.putExtra("x", lastPoint.x);
-			switchActivityIntent.putExtra("y", lastPoint.y);
+			switchActivityIntent.putExtra("x", oldPoint.x);
+			switchActivityIntent.putExtra("y", oldPoint.y);
 		}
+    	switchActivityIntent.putExtra("readOnly", readOnly);
     	switchActivityIntent.putExtra("request_code", requestCode);
+    	this.positionSelectListener = listener;
     	
 		this.startActivityForResult(switchActivityIntent, requestCode);
     }

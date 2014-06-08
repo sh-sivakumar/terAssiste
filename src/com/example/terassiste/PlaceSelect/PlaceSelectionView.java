@@ -38,9 +38,10 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 	private float planScale;// ça nous servira pour redimentionner le plan et
 							// repositionner les places
 	
-	
 	private Point screenSize;
 	private SelectPlaceActivity context;
+	
+	private boolean isReadOnly = false;
 
 	// Les objects nécessaires pour dessiner la cible
 	PlaceTargetDrawer targetDrawer = null;
@@ -57,6 +58,16 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		this.setLongClickable(true);
 		
 		this.workThread = new Thread(this);
+		
+	}
+	
+	public boolean isReadOnly(){
+		return this.isReadOnly;
+	}
+	
+	public void setReadOnly(boolean ro){
+		this.isReadOnly = ro;
+		Log.i("LG", "Place selection view set to read ONLY");
 		
 	}
 

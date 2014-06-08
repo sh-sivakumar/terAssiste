@@ -18,8 +18,9 @@ public class SelectPlaceActivity extends Activity {
 	
 	PlaceSelectPopupWindow popupWindow;
 	PlaceSelectionView view;
-	int requestCode;
 	
+	int requestCode;
+	boolean isReadOnly = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,11 +30,16 @@ public class SelectPlaceActivity extends Activity {
 		view = (PlaceSelectionView) layout.getChildAt(0);
 	}
 	
+	
 	@Override
 	protected void onStart(){
 		super.onStart();
 		this.requestCode = getIntent().getExtras().getInt("request_code");
 		Log.i("LG", "SelectionPlaceActivity request code:"+requestCode);
+		if(getIntent().getExtras().containsKey("readOnly")){
+			this.isReadOnly = getIntent().getExtras().getBoolean("readOnly");
+		}
+		this.view.setReadOnly(this.isReadOnly);
 		if(requestCode == REQUEST_CODE.MODIFIE_POINT_ON_MAP){
 			int x = getIntent().getExtras().getInt("x");
 			int y = getIntent().getExtras().getInt("y");
@@ -43,6 +49,11 @@ public class SelectPlaceActivity extends Activity {
 	}
 
 	public void ShowPopupWindow(){
+		if(this.isReadOnly)
+		{
+			return ;
+		}
+		
 		//this.menuWindow.showAtLocation(this.findViewById(R.id.place_selection_layout), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 100, 100);
 		popupWindow = new PlaceSelectPopupWindow(SelectPlaceActivity.this);
 		popupWindow.setWidth((int) (getWindowManager().getDefaultDisplay().getWidth() / 1.5));
@@ -83,6 +94,9 @@ public class SelectPlaceActivity extends Activity {
 	}
 	
 	public void HidePopupWindow(){
+		if(this.isReadOnly){
+			return ;
+		}
 		this.popupWindow.dismiss();
 	}
 }

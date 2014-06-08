@@ -10,6 +10,7 @@ import com.example.terassiste.MainActivity;
 import com.example.terassiste.http.AsynJsonHttp;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	private String nom;
 	private String prenom;
 	private String train;
+	private Point position;
 	
 	private View 			_view;
 	private MainActivity	_parentActivity;
@@ -32,7 +35,7 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	private static final String TAG = "FragmentDetailEvt";
 	private static final String URL = "http://terassistee.netai.net/detailevent.php";
 	
-	public FragmentDetailEvt(int id, String nom, String prenom, String train) {
+	public FragmentDetailEvt(int id, String nom, String prenom, String train, Point pos) {
 		this.idEvenement = id;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -133,6 +136,20 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		
+		Button buttonConsult = (Button) this._view.findViewById(R.id.buttonViewPosition);
+		buttonConsult.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FragmentDetailEvt.this._parentActivity.ViewPlaceOnTheMap(
+						null, 
+						FragmentDetailEvt.this.position,
+						true);
+			}
+			
+		});
 	}
 
 	@Override

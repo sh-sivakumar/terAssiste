@@ -124,11 +124,18 @@
         android:orientation="vertical" >
         
        	<TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Positionnement"
-	        android:textAppearance="?android:attr/textAppearanceLarge"
-	        android:textStyle="bold" />
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:text="Positionnement:"
+       	    android:textAppearance="?android:attr/textAppearanceLarge"
+       	    android:textStyle="bold" />
+       	
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonViewPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cliquer pour consulter" />
 
 </LinearLayout>

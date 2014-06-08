@@ -14,6 +14,4 @@ public class Gare {
 		this.adresseGare = adresseGare;
 		this.retournement = retournement;
 	}
-	
-	
 }

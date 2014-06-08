@@ -11,6 +11,7 @@ import com.example.terassiste.http.AsynJsonHttp;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -49,10 +50,13 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			jsonReturn.put("heureDep", "15:55");
 			jsonReturn.put("gareArr", "Saint Julien");
 			jsonReturn.put("heureArr", "17:05");
+			this._oldPosition = new Point(50, 350);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		*/
+		
+		this._oldPosition = new Point(50, 350);
 		/* ----- Fin : Test JSON ----- */
 		
 		JSONObject jsonObject= new JSONObject();

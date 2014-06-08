@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -86,6 +87,7 @@ public class FragmentListeEvt extends Fragment {
 			pmr1.put("id", 1);
 			pmr1.put("nom", "Xavier");
 			pmr1.put("prenom", "XXX");
+			pmr1.put("position", new Point(70, 277));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -95,6 +97,7 @@ public class FragmentListeEvt extends Fragment {
 			pmr2.put("id", 1);
 			pmr2.put("nom", "XXX");
 			pmr2.put("prenom", "Xavier");
+			pmr2.put("position", new Point(70, 210));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -106,6 +109,7 @@ public class FragmentListeEvt extends Fragment {
 			pmr3.put("id", 3);
 			pmr3.put("nom", "Okman");
 			pmr3.put("prenom", "Oui");
+			pmr3.put("position", new Point(70, 100));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -184,18 +188,20 @@ public class FragmentListeEvt extends Fragment {
 		String train;
 		String nom;
 		String prenom;
+		Point position;
 		
-		public OnMainItemClickListener(int id, String train, String nom, String prenom) {
+		public OnMainItemClickListener(int id, String train, String nom, String prenom, Point pos) {
 			this.idEvenement = id;
 			this.train = train;
 			this.nom = nom;
 			this.prenom = prenom;
+			this.position = pos;
 		}
 
 		@Override
 		public void onClick(View v) {
 			Log.i("LG", "TEST = Bouton clique ->" + nom + " " + prenom + " - train: "+ train);
-			_mainActivity.switchFragment(new FragmentDetailEvt(this.idEvenement, this.nom, this.prenom, this.train));
+			_mainActivity.switchFragment(new FragmentDetailEvt(this.idEvenement, this.nom, this.prenom, this.train, this.position));
 		}
 	}
     
@@ -246,9 +252,11 @@ public class FragmentListeEvt extends Fragment {
         	String nom = getNomPMR(groupPosition, childPosition);
 			String prenom = getPrenomPMR(groupPosition, childPosition);
 			int id = getIdEvenement(groupPosition, childPosition);
+			//Point position = getPositionPMR(groupPosition, childPosition);
+			Point position = new Point(50, 350);
 			
             LinearLayout layout = (LinearLayout) convertView.findViewById(R.id.btPMR);
-            layout.setOnClickListener(new OnMainItemClickListener(id, train, nom, prenom));
+            layout.setOnClickListener(new OnMainItemClickListener(id, train, nom, prenom, position));
         	
         }
      
@@ -357,6 +365,24 @@ public class FragmentListeEvt extends Fragment {
 			try {
 				String prenom = obj.getString("prenom");
 				return prenom;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		public Point getPositionPMR(int groupPosition, int childPosition){
+
+			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
+			JSONObject obj = null;
+			try {
+				obj = pmr.getJSONObject(childPosition);
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				Point position = (Point) obj.get("position");
+				return position;
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

@@ -47,7 +47,7 @@ public class MainSlideMenu extends LinearLayout implements OnClickListener{
 				this._mainActivity.switchFragment(new FragmentListeEvt());
 				break;	
 			case R.id.slide_select_place:
-				this._mainActivity.SelectPlaceOnTheMap();
+				//this._mainActivity.SelectPlaceOnTheMap();
 				break;
 			case R.id.slide_menu_create_evt:
 				this._mainActivity.switchFragment(new FragmentCreateEvt());

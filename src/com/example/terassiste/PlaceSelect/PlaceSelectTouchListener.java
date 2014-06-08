@@ -56,9 +56,11 @@ public class PlaceSelectTouchListener implements OnTouchListener {
 				Log.i("PlaceSelectToucheListener",
 						"Not much move:" + Math.abs(this.margin_counter)
 								+ ", solved as click");
-				this.view.moveTargetBoxToRelativeScreen((int) event.getX(),
-						(int) event.getY());
-				this.view.ShowPopupWindow();
+				if(this.view.isReadOnly() == false){
+					this.view.moveTargetBoxToRelativeScreen((int) event.getX(),
+							(int) event.getY());
+					this.view.ShowPopupWindow();
+				}
 			}
 
 			this.margin_counter = 0;
