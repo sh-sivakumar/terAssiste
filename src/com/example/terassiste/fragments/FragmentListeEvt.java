@@ -86,7 +86,7 @@ public class FragmentListeEvt extends Fragment {
 		jsonPMR.put(pmr1);
 		JSONObject pmr2 = new JSONObject();
 		try {
-			pmr2.put("id", 2);
+			pmr2.put("id", 1);
 			pmr2.put("nom", "XXX");
 			pmr2.put("prenom", "Xavier");
 		} catch (JSONException e) {
@@ -178,7 +178,7 @@ public class FragmentListeEvt extends Fragment {
 		@Override
 		public void onClick(View v) {
 			Log.i("LG", "TEST = Bouton clique ->" + nom + " " + prenom + " - train: "+ train);
-			_mainActivity.switchFragment(new FragmentDetailEvt(nom, prenom, train));
+			_mainActivity.switchFragment(new FragmentDetailEvt(this.idEvenement, this.nom, this.prenom, this.train));
 		}
 	}
     
