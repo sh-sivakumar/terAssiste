@@ -139,7 +139,7 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.evt_modif:
-			this._parentActivity.switchFragment(new FragmentModifEvt());
+			this._parentActivity.switchFragment(new FragmentModifEvt(this.idEvenement));
 			break;
 		}
 		
