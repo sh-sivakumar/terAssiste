@@ -21,8 +21,7 @@ import android.widget.TextView;
 
 public class FragmentConnexion extends Fragment implements OnClickListener {
 	private static final String TAG = "FragmentConnexion";
-	//private static final String URL = "http://terassistee.netai.net/connect.php";
-	private static final String URL = "http://terassistee.netai.net/test.php";
+	private static final String URL = "http://terassistee.netai.net/connect.php";
 	
 	private MainActivity	_mainActivity;
 	private View 			_view;
