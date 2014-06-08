@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.example.terassiste.MainActivity;
 import com.example.terassiste.R;
+import com.example.terassiste.http.AsynJsonHttp;
 
 public class FragmentListeEvt extends Fragment {
 
@@ -34,6 +36,9 @@ public class FragmentListeEvt extends Fragment {
 	private View 			_view;
 	
 	private ExpandableListView expandableList = null;
+	
+	private static final String TAG = "FragmentDetailEvt";
+	private static final String URL = "http://terassistee.netai.net/listevent.php";
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -71,9 +76,10 @@ public class FragmentListeEvt extends Fragment {
     
 	public List<Map<String, Object>> fetchAllData() throws JSONException {
 		
+		
 		JSONObject object = new JSONObject();
 		/* ----- Debut : Test JSON ----- */
-		
+		/*
 		JSONArray jsonPMR = new JSONArray();
 		JSONObject pmr1 = new JSONObject();
 		try {
@@ -141,13 +147,24 @@ public class FragmentListeEvt extends Fragment {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+		*/
 		/* ----- Fin : Test JSON ----- */
+		
+		AsynJsonHttp thread = new AsynJsonHttp(URL);
+		thread.execute(object);
+		try {
+			object = thread.get();
+			Log.i(TAG, "test: "+object.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 		
 		if(object.getBoolean("result") == true) {
-			JSONArray jArr = object.getJSONArray("events");
+			JSONArray jArr = object.getJSONArray("event");
 			for (int i=0; i < jArr.length(); i++) {
 			    JSONObject obj = jArr.getJSONObject(i);
 			    
