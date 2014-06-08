@@ -252,8 +252,7 @@ public class FragmentListeEvt extends Fragment {
         	String nom = getNomPMR(groupPosition, childPosition);
 			String prenom = getPrenomPMR(groupPosition, childPosition);
 			int id = getIdEvenement(groupPosition, childPosition);
-			//Point position = getPositionPMR(groupPosition, childPosition);
-			Point position = new Point(50, 350);
+			Point position = getPositionPMR(groupPosition, childPosition);
 			
             LinearLayout layout = (LinearLayout) convertView.findViewById(R.id.btPMR);
             layout.setOnClickListener(new OnMainItemClickListener(id, train, nom, prenom, position));
@@ -381,8 +380,10 @@ public class FragmentListeEvt extends Fragment {
 				e1.printStackTrace();
 			}
 			try {
-				Point position = (Point) obj.get("position");
-				return position;
+				int x = obj.getInt("x");
+				int y = obj.getInt("y");
+				
+				return new Point(x,y);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

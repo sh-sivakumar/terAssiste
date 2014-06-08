@@ -56,7 +56,6 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 		}
 		*/
 		
-		this._oldPosition = new Point(50, 350);
 		/* ----- Fin : Test JSON ----- */
 		
 		JSONObject jsonObject= new JSONObject();
@@ -118,6 +117,11 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			
 			EditText heureArr = (EditText) this._view.findViewById(R.id.heureArr);
 			heureArr.setText(jsonReturn.getString("heureArr"));
+			
+			int x = jsonReturn.getInt("x");
+			int y = jsonReturn.getInt("y");
+			
+			this._oldPosition = new Point(x, y);
 
 		} catch (JSONException e) {
 			e.printStackTrace();

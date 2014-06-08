@@ -40,6 +40,8 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.train = train;
+		this.position = pos;
+		
 	}
 
 	@Override
