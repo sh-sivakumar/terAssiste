@@ -45,8 +45,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 		switch(v.getId()){
 		case R.id.suivant:
 			boolean suite = checkForm();
-			//Fragment ajout de la place (avec le plan)
-			//this._parentActivity.switchFragment(new FragmentCreateEvtTwo());
+			this._parentActivity.SelectPlaceOnTheMap();
 			break;
 		}
 		

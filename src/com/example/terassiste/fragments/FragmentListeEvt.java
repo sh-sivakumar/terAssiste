@@ -77,6 +77,7 @@ public class FragmentListeEvt extends Fragment {
 		JSONArray jsonPMR = new JSONArray();
 		JSONObject pmr1 = new JSONObject();
 		try {
+			pmr1.put("id", 1);
 			pmr1.put("nom", "Xavier");
 			pmr1.put("prenom", "XXX");
 		} catch (JSONException e) {
@@ -85,6 +86,7 @@ public class FragmentListeEvt extends Fragment {
 		jsonPMR.put(pmr1);
 		JSONObject pmr2 = new JSONObject();
 		try {
+			pmr2.put("id", 2);
 			pmr2.put("nom", "XXX");
 			pmr2.put("prenom", "Xavier");
 		} catch (JSONException e) {
@@ -95,6 +97,7 @@ public class FragmentListeEvt extends Fragment {
 		JSONArray jsonPMR2 = new JSONArray();
 		JSONObject pmr3 = new JSONObject();
 		try {
+			pmr3.put("id", 3);
 			pmr3.put("nom", "Okman");
 			pmr3.put("prenom", "Oui");
 		} catch (JSONException e) {
@@ -160,11 +163,13 @@ public class FragmentListeEvt extends Fragment {
 	}
 	
 	private class OnMainItemClickListener implements OnClickListener {
+		int idEvenement;
 		String train;
 		String nom;
 		String prenom;
 		
-		public OnMainItemClickListener(String train, String nom, String prenom) {
+		public OnMainItemClickListener(int id, String train, String nom, String prenom) {
+			this.idEvenement = id;
 			this.train = train;
 			this.nom = nom;
 			this.prenom = prenom;
@@ -223,9 +228,10 @@ public class FragmentListeEvt extends Fragment {
         	String train = map.get("train").toString();
         	String nom = getNomPMR(groupPosition, childPosition);
 			String prenom = getPrenomPMR(groupPosition, childPosition);
+			int id = getIdEvenement(groupPosition, childPosition);
 			
             LinearLayout layout = (LinearLayout) convertView.findViewById(R.id.btPMR);
-            layout.setOnClickListener(new OnMainItemClickListener(train, nom, prenom));
+            layout.setOnClickListener(new OnMainItemClickListener(id, train, nom, prenom));
         	
         }
      
@@ -287,6 +293,23 @@ public class FragmentListeEvt extends Fragment {
 			String nom = getNomPMR(groupPosition, childPosition);
 			String prenom = getPrenomPMR(groupPosition, childPosition);
 			return nom + " " + prenom;
+		}
+		
+		public int getIdEvenement(int groupPosition, int childPosition) {
+			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
+			JSONObject obj = null;
+			try {
+				obj = pmr.getJSONObject(childPosition);
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				int id = obj.getInt("id");
+				return id;
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return -1;
 		}
 		
 		public String getNomPMR(int groupPosition, int childPosition) {
