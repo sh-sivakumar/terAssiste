@@ -34,7 +34,7 @@
         android:textStyle="bold"
         android:paddingTop="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-  	<EditText
+  	<AutoCompleteTextView
         android:id="@+id/textNumTrain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
   	<LinearLayout
   	    android:layout_width="match_parent"
   	    android:layout_height="wrap_content" >
-  		<EditText
+  		<AutoCompleteTextView
   		    android:id="@+id/gareDep"
   		    android:layout_width="wrap_content"
   		    android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
   	<LinearLayout
   	    android:layout_width="match_parent"
   	    android:layout_height="wrap_content" >
-  		<EditText
+  		<AutoCompleteTextView
   		    android:id="@+id/gareArr"
   		    android:layout_width="wrap_content"
   		    android:layout_height="wrap_content"

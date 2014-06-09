@@ -166,7 +166,7 @@ public class FragmentListeEvt extends Fragment {
 		}
 		
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-		
+		List<String> listeNumTrain = new ArrayList<String>();
 		if(object.getBoolean("result") == true) {
 			JSONArray jArr = object.getJSONArray("event");
 			for (int i=0; i < jArr.length(); i++) {
@@ -174,11 +174,13 @@ public class FragmentListeEvt extends Fragment {
 			    
 				Map<String, Object> oneRow = new HashMap<String, Object>();
 				oneRow.put("train", "Train n: " + obj.getString("train"));
+				listeNumTrain.add(obj.getString("train"));
 				oneRow.put("nbPMR", obj.getInt("nbPMR") + " PMR a bord.");
 				oneRow.put("pmr", obj.getJSONArray("pmr"));
 				data.add(oneRow);
 			}
 		}
+		this._mainActivity.setListNumTrain(listeNumTrain);
 				
 		return data;
 	}

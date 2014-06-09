@@ -1,5 +1,6 @@
 package com.example.terassiste.fragments;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
@@ -21,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -32,6 +35,9 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	protected int new_x = -1;
 	protected int new_y = -1;
 	
+	protected AutoCompleteTextView gareDep;
+	protected AutoCompleteTextView gareArr;
+	protected AutoCompleteTextView train;
 	private static final String TAG 				= "FragmentCreateEvt";
 	private static final String URL 				= "http://terassistee.netai.net/createevent.php";
 	
@@ -53,6 +59,18 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 		this._view = inflater.inflate(R.layout.fragment_create_evt, container, false);
 		this._view.findViewById(R.id.suivant).setOnClickListener(this);
 		this._view.findViewById(R.id.enregistrer).setOnClickListener(this);
+		
+		String[] listeGares = getResources().getStringArray(R.array.liste_gares);
+		gareDep = (AutoCompleteTextView) this._view.findViewById(R.id.gareDep);
+		gareArr = (AutoCompleteTextView) this._view.findViewById(R.id.gareArr);
+		ArrayAdapter adapter = new ArrayAdapter(this._parentActivity, android.R.layout.simple_list_item_1, listeGares);
+		gareDep.setAdapter(adapter);
+		gareArr.setAdapter(adapter);
+
+		train = (AutoCompleteTextView) this._view.findViewById(R.id.textNumTrain);
+		List<String> listeNumTrain = this._parentActivity.getListNumTrain();
+		ArrayAdapter numTrainAdapter = new ArrayAdapter(this._parentActivity, android.R.layout.simple_list_item_1, listeNumTrain);
+		train.setAdapter(numTrainAdapter);
 	
 		return this._view;
 	}
@@ -87,10 +105,9 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	public void addEvt() {
 		TextView name = (TextView) this._view.findViewById(R.id.textNom);
 		TextView prenom = (TextView) this._view.findViewById(R.id.textPrenom);
-		TextView train = (TextView) this._view.findViewById(R.id.textNumTrain);
-		TextView gareDep = (TextView) this._view.findViewById(R.id.gareDep);
+		AutoCompleteTextView gareDep = (AutoCompleteTextView) this._view.findViewById(R.id.gareDep);
 		TextView heureDep = (TextView) this._view.findViewById(R.id.heureDep);
-		TextView gareArr = (TextView) this._view.findViewById(R.id.gareArr);
+		AutoCompleteTextView gareArr = (AutoCompleteTextView) this._view.findViewById(R.id.gareArr);
 		TextView heureArr = (TextView) this._view.findViewById(R.id.heureArr);
 		JSONObject jsonObject= new JSONObject();
 		try {
@@ -104,7 +121,6 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 			jsonObject.put("x", this.new_x);
 			jsonObject.put("y", this.new_y);
 			jsonObject.put("agent", this._parentActivity.getLogin());
-			Log.i(TAG, "...: "+this._parentActivity.getLogin()+":... ");
 			
 		} catch (JSONException e) {
 			e.printStackTrace();

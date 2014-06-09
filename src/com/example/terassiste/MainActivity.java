@@ -1,5 +1,8 @@
 package com.example.terassiste;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.terassiste.PlaceSelect.OnPositionSelectOneShotListener;
 import com.example.terassiste.fragments.FragmentConnexion;
 
@@ -36,7 +39,8 @@ public class MainActivity extends FragmentActivity {
 	public static final int	FRAGMENT_CREATE_EVT		= 3;
 	
 	String login;
-
+	private List<String> _liste_numTrain = new ArrayList<String>();
+	
     OnPositionSelectOneShotListener positionSelectListener = null;
 	
 	@SuppressLint("NewApi")
@@ -56,6 +60,13 @@ public class MainActivity extends FragmentActivity {
 		this.switchFragment(new FragmentConnexion());
 	}
 	
+	public void setListNumTrain(List<String> listeNumTrain){
+		this._liste_numTrain = listeNumTrain;
+	}
+	
+	public List<String> getListNumTrain(){
+		return _liste_numTrain;
+	}
 
     @Override  
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {  

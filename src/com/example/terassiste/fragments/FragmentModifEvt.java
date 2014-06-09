@@ -7,7 +7,9 @@ import org.json.JSONObject;
 
 import com.example.terassiste.R;
 import com.example.terassiste.MainActivity;
+import com.example.terassiste.PlaceSelect.OnPositionSelectOneShotListener;
 import com.example.terassiste.http.AsynJsonHttp;
+import com.example.terassiste.metier.Evenement;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -28,6 +30,7 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 	
 	private static final String TAG = "FragmentDetailEvt";
 	private static final String URL = "http://terassistee.netai.net/detailevent.php";
+	private static final String URL_update = "http://terassistee.netai.net/updateevent.php";
 
 	public FragmentModifEvt(int id) {
 		this.idEvenement = id;
@@ -81,6 +84,7 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			if(jsonReturn.getBoolean("result")) {	
 				this._view = inflater.inflate(R.layout.fragment_create_evt, container, false);
 				this._view.findViewById(R.id.suivant).setOnClickListener(this);
+				this._view.findViewById(R.id.enregistrer).setOnClickListener(this);
 				fillForm(jsonReturn);
 			} else {
 				this._view = inflater.inflate(R.layout.empty_fragment, container, false);
@@ -124,6 +128,77 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			this._oldPosition = new Point(x, y);
 
 		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Evenement genereEvenement(int x, int y) {
+		this.new_x = x;
+		this.new_y = y;
+		return null;
+	}
+	
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()){
+			case R.id.suivant:
+				boolean suite = checkForm();
+				if(suite){
+					this._parentActivity.ViewPlaceOnTheMap(new OnPositionSelectOneShotListener(){
+	
+						@Override
+						public void OnPositionSelect(Point position) {
+							int x = position.x;
+							int y = position.y;
+				    		Log.i("LG", "Select back point on the map:"+x+";"+y);
+							Evenement newEvent = FragmentModifEvt.this.genereEvenement(x, y);
+							//et ensuite on enregistre cet evenement sur le serveur
+				    		
+						}}, this._oldPosition, false);
+				}
+				break;
+			case R.id.enregistrer:
+				updateEvt();
+				this._parentActivity.switchFragment(new FragmentListeEvt());
+				break;
+		}
+	}
+	
+	public void updateEvt() {
+		TextView name = (TextView) this._view.findViewById(R.id.textNom);
+		TextView prenom = (TextView) this._view.findViewById(R.id.textPrenom);
+		TextView train = (TextView) this._view.findViewById(R.id.textNumTrain);
+		TextView gareDep = (TextView) this._view.findViewById(R.id.gareDep);
+		TextView heureDep = (TextView) this._view.findViewById(R.id.heureDep);
+		TextView gareArr = (TextView) this._view.findViewById(R.id.gareArr);
+		TextView heureArr = (TextView) this._view.findViewById(R.id.heureArr);
+		JSONObject jsonObject= new JSONObject();
+		try {
+			jsonObject.put("idEvent", this.idEvenement);
+			jsonObject.put("nom", name.getText().toString());
+			jsonObject.put("prenom", prenom.getText().toString());
+			jsonObject.put("train", train.getText().toString());
+			jsonObject.put("gareDep", gareDep.getText().toString());
+			jsonObject.put("heureDep", heureDep.getText().toString());
+			jsonObject.put("gareArr", gareArr.getText().toString());
+			jsonObject.put("heureArr", heureArr.getText().toString());
+			jsonObject.put("x", this.new_x);
+			jsonObject.put("y", this.new_y);
+			jsonObject.put("agent", this._parentActivity.getLogin());
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		AsynJsonHttp thread = new AsynJsonHttp(URL_update);
+		thread.execute(jsonObject);
+		JSONObject jsonReturn = null;
+		try {
+			jsonReturn = thread.get();
+			Log.i(TAG, "test - reception: "+jsonObject.toString());
+			Log.i(TAG, "test - modif: "+jsonReturn.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
 	}
