@@ -49,7 +49,7 @@ public final class R {
         public static final int train_logo=0x7f020013;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a002d;
+        public static final int action_settings=0x7f0a002c;
         public static final int bienvenue=0x7f0a0005;
         public static final int btPMR=0x7f0a0022;
         public static final int btn_take_place=0x7f0a0027;
@@ -83,9 +83,8 @@ public final class R {
         public static final int pmr_name=0x7f0a0024;
         public static final int slide_menu_consult_evt=0x7f0a0028;
         public static final int slide_menu_create_evt=0x7f0a0029;
-        public static final int slide_menu_deco=0x7f0a002b;
-        public static final int slide_menu_quit=0x7f0a002c;
-        public static final int slide_select_place=0x7f0a002a;
+        public static final int slide_menu_deco=0x7f0a002a;
+        public static final int slide_menu_quit=0x7f0a002b;
         public static final int suivant=0x7f0a0015;
         public static final int textIdentifiant=0x7f0a0007;
         public static final int textNom=0x7f0a000b;
