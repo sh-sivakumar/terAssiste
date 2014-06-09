@@ -29,11 +29,12 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	private String train;
 	private Point position;
 	
-	private View 			_view;
-	private MainActivity	_parentActivity;
+	private View 				_view;
+	private MainActivity		_parentActivity;
 	
-	private static final String TAG = "FragmentDetailEvt";
-	private static final String URL = "http://terassistee.netai.net/detailevent.php";
+	private static final String TAG 				= "FragmentDetailEvt";
+	private static final String URL 				= "http://terassistee.netai.net/detailevent.php";
+	private static final String URL_delete 			= "http://terassistee.netai.net/deleteEvent.php";
 	
 	public FragmentDetailEvt(int id, String nom, String prenom, String train, Point pos) {
 		this.idEvenement = id;
@@ -101,6 +102,7 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 			if(jsonReturn.getBoolean("result")) {	
 				this._view = inflater.inflate(R.layout.fragment_evt_detail, container, false);
 				this._view.findViewById(R.id.evt_modif).setOnClickListener(this);
+				this._view.findViewById(R.id.evt_end).setOnClickListener(this);
 				fillForm(jsonReturn);
 			} else {
 				this._view = inflater.inflate(R.layout.empty_fragment, container, false);
@@ -160,8 +162,33 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		case R.id.evt_modif:
 			this._parentActivity.switchFragment(new FragmentModifEvt(this.idEvenement));
 			break;
+		case R.id.evt_end:
+			deleteEvt();
+			this._parentActivity.switchFragment(new FragmentListeEvt());
+			break;
 		}
 		
+	}
+	
+	public void deleteEvt() {
+		JSONObject jsonObject= new JSONObject();
+		try {
+			jsonObject.put("idEvent", this.idEvenement);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		AsynJsonHttp thread = new AsynJsonHttp(URL_delete);
+		thread.execute(jsonObject);
+		JSONObject jsonReturn = null;
+		try {
+			jsonReturn = thread.get();
+			Log.i(TAG, "test: "+jsonReturn.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

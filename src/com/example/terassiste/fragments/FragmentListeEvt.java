@@ -64,7 +64,7 @@ public class FragmentListeEvt extends Fragment {
 			e.printStackTrace();
 		}
 		
-		if(dataCache != null) {
+		if(!dataCache.isEmpty()) {
 			ELVAdapter adapter = new ELVAdapter(inflater, dataCache);
 			expandableList.setAdapter(adapter);
 		} else {

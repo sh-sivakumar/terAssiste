@@ -34,6 +34,8 @@ public class MainActivity extends FragmentActivity {
 	public static final int	FRAGMENT_CONNEXION		= 1;
 	public static final int	FRAGMENT_EVT_LIST		= 2;
 	public static final int	FRAGMENT_CREATE_EVT		= 3;
+	
+	String login;
 
     OnPositionSelectOneShotListener positionSelectListener = null;
 	
@@ -144,6 +146,14 @@ public class MainActivity extends FragmentActivity {
     	this.positionSelectListener = listener;
     	
 		this.startActivityForResult(switchActivityIntent, requestCode);
+    }
+    
+    public void setLogin(String login) {
+    	this.login = login;
+    }
+    
+    public String getLogin() {
+    	return this.login;
     }
 	   
 }

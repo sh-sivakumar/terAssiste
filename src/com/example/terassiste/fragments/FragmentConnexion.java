@@ -77,6 +77,7 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 			JSONObject jsonReturn = thread.get();
 			Log.i(TAG, "test: "+jsonReturn.toString());
 			if(jsonReturn.getBoolean("result")) {
+				this._mainActivity.setLogin(id.getText().toString());
 				this._mainActivity.switchFragment(new FragmentListeEvt());
 			}
 
