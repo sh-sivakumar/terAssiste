@@ -4,9 +4,7 @@
     $login = $data_back->{"login"};
     $pass = $data_back->{"password"};
 
-    mysql_connect("","","");
-    mysql_select_db("");
-
+    
     $sql=mysql_query("Select COUNT(*) as nb FROM agent WHERE pseudo = '".$login."' && password = '".$pass."'");
     $row = mysql_fetch_array($sql) or die(mysql_error());
 
