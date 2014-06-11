@@ -51,7 +51,7 @@
         android:text="Contact PMR : 06XXXXXXXX" />
 
   	<TextView
-        android:id="@+id/contact_pmr"
+        android:id="@+id/contact_pmr_externe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact Externe PMR : 06XXXXXXXX" />
@@ -64,7 +64,7 @@
         android:text="Ajouté par Agent XXX XXX" />
     
   	<TextView
-        android:id="@+id/contact_pmr"
+        android:id="@+id/contact_agent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact Agent : 06XXXXXXXX" />

@@ -137,6 +137,28 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 			
 			TextView heureArr = (TextView) this._view.findViewById(R.id.heure_arr);
 			heureArr.setText(jsonReturn.getString("heureArr"));
+			
+			String contactPmrStr="Non defini";
+			if(!jsonReturn.getString("contactPMR").isEmpty()) {
+				contactPmrStr = jsonReturn.getString("contactPMR");
+			}
+			TextView contactPMR = (TextView) this._view.findViewById(R.id.contact_pmr);
+			contactPMR.setText("Contact PMR :" + contactPmrStr);
+			
+			String contactExternePmrStr="Non defini";
+			if(!jsonReturn.getString("contactPMRExterne").isEmpty()) {
+				contactExternePmrStr = jsonReturn.getString("contactPMRExterne");
+			}
+			TextView contactPMRExterne = (TextView) this._view.findViewById(R.id.contact_pmr_externe);
+			contactPMRExterne.setText("Contact Externe PMR :" + contactExternePmrStr);
+			
+			String contactAgentStr="Non defini";
+			if(!jsonReturn.getString("contactAgent").isEmpty()) {
+				contactAgentStr = jsonReturn.getString("contactAgent");
+			}
+			TextView contactAgent = (TextView) this._view.findViewById(R.id.contact_agent);
+			contactAgent.setText("Contact agent :" + contactAgentStr);
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
