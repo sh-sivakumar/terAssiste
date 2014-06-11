@@ -150,7 +150,6 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 						public void OnPositionSelect(Point position) {
 							int x = position.x;
 							int y = position.y;
-				    		Log.i("LG", "Select back point on the map:"+x+";"+y);
 							Evenement newEvent = FragmentModifEvt.this.genereEvenement(x, y);
 							//et ensuite on enregistre cet evenement sur le serveur
 				    		
@@ -182,8 +181,11 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			jsonObject.put("heureDep", heureDep.getText().toString());
 			jsonObject.put("gareArr", gareArr.getText().toString());
 			jsonObject.put("heureArr", heureArr.getText().toString());
+
 			jsonObject.put("x", this.new_x);
 			jsonObject.put("y", this.new_y);
+
+    		Log.i("LG", "Select back point on the map:"+this.new_x+";"+this.new_y);
 			jsonObject.put("agent", this._parentActivity.getLogin());
 			
 		} catch (JSONException e) {
@@ -194,7 +196,7 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 		JSONObject jsonReturn = null;
 		try {
 			jsonReturn = thread.get();
-			Log.i(TAG, "test - reception: "+jsonObject.toString());
+			Log.i(TAG, "test - envoi: "+jsonObject.toString());
 			Log.i(TAG, "test - modif: "+jsonReturn.toString());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
