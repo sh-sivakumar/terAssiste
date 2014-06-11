@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.terassiste.PlaceSelect.OnPositionSelectOneShotListener;
 import com.example.terassiste.fragments.FragmentConnexion;
+import com.example.terassiste.metier.Agent;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -38,7 +39,8 @@ public class MainActivity extends FragmentActivity {
 	public static final int	FRAGMENT_EVT_LIST		= 2;
 	public static final int	FRAGMENT_CREATE_EVT		= 3;
 	
-	String login;
+	private Agent utilisateur;
+	//String login;
 	private List<String> _liste_numTrain = new ArrayList<String>();
 	
     OnPositionSelectOneShotListener positionSelectListener = null;
@@ -158,7 +160,17 @@ public class MainActivity extends FragmentActivity {
     	
 		this.startActivityForResult(switchActivityIntent, requestCode);
     }
+
+	public Agent getUtilisateur() {
+		return this.utilisateur;
+	}
+
+	public void setUtilisateur(Agent utilisateur) {
+		this.utilisateur = utilisateur;
+	}
     
+    
+    /*
     public void setLogin(String login) {
     	this.login = login;
     }
@@ -166,5 +178,6 @@ public class MainActivity extends FragmentActivity {
     public String getLogin() {
     	return this.login;
     }
-	   
+    */
+    	   
 }

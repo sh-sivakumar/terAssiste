@@ -120,7 +120,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 			jsonObject.put("heureArr", heureArr.getText().toString());
 			jsonObject.put("x", this.new_x);
 			jsonObject.put("y", this.new_y);
-			jsonObject.put("agent", this._parentActivity.getLogin());
+			jsonObject.put("agent", this._parentActivity.getUtilisateur().getLogin());
 			
 		} catch (JSONException e) {
 			e.printStackTrace();

@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.example.terassiste.MainActivity;
 import com.example.terassiste.R;
 import com.example.terassiste.http.AsynJsonHttp;
+import com.example.terassiste.metier.Agent;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -77,7 +78,14 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 			JSONObject jsonReturn = thread.get();
 			Log.i(TAG, "test: "+jsonReturn.toString());
 			if(jsonReturn.getBoolean("result")) {
-				this._mainActivity.setLogin(id.getText().toString());
+				//this._mainActivity.setLogin(id.getText().toString());
+				
+				String nom = jsonReturn.getString("nom");;
+				String prenom = jsonReturn.getString("prenom");
+				String login = id.getText().toString();
+				Agent utilisateur = new Agent(nom, prenom, login);
+				this._mainActivity.setUtilisateur(utilisateur);
+				
 				this._mainActivity.switchFragment(new FragmentListeEvt());
 			}
 

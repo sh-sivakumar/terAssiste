@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        	android:hint="Nom"
+       	android:singleLine="true"
         android:ems="10" >
         <requestFocus />
     </EditText>
@@ -25,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Prénom"
+        android:singleLine="true"
         android:ems="10" />
     
   	<TextView
@@ -39,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Numéro du train"
+        android:singleLine="true"
         android:ems="10" />
 
   	<TextView
@@ -59,6 +62,7 @@
   		    android:layout_height="wrap_content"
   		    android:layout_weight="1"
   		    android:hint="Gare"
+  		    android:singleLine="true"
   		    android:ems="10" />
 
   		<EditText
@@ -89,6 +93,7 @@
   		    android:layout_height="wrap_content"
   		    android:layout_weight="1"
   		    android:hint="Gare"
+  		    android:singleLine="true"
   		    android:ems="10" />
 
   		<EditText

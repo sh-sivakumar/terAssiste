@@ -12,7 +12,7 @@ public class PlaceTargetDrawer {
 	
 	private Point centerPoint;//
 	private PlaceSelectionView _v;
-	private int size = 25;
+	private int size = 10;
 	private int alpha = 150;
 	private boolean addAlpha = true;
 	

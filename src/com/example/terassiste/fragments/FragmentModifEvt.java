@@ -186,7 +186,7 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			jsonObject.put("y", this.new_y);
 
     		Log.i("LG", "Select back point on the map:"+this.new_x+";"+this.new_y);
-			jsonObject.put("agent", this._parentActivity.getLogin());
+			jsonObject.put("agent", this._parentActivity.getUtilisateur().getLogin());
 			
 		} catch (JSONException e) {
 			e.printStackTrace();

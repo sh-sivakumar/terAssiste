@@ -43,12 +43,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PMR : Mr Xavier Xxxx" />
+    
+    <TextView
+        android:id="@+id/contact_pmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact PMR : 06XXXXXXXX" />
 
+  	<TextView
+        android:id="@+id/contact_pmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Externe PMR : 06XXXXXXXX" />
+        
     <TextView
         android:id="@+id/name_agent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Ajouté par Agent XXX XXX" />
+    
+  	<TextView
+        android:id="@+id/contact_pmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Agent : 06XXXXXXXX" />
 
     <TextView
         android:id="@+id/num_train"
@@ -136,6 +155,7 @@
         android:id="@+id/buttonViewPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cliquer pour consulter" />
+        android:layout_marginTop="10dp"
+        android:text="Position du PMR" />
 
 </LinearLayout>
