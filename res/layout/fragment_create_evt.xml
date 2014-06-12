@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
     android:background="@drawable/background"
     android:orientation="vertical" >
 
@@ -28,6 +31,29 @@
         android:hint="Prénom"
         android:singleLine="true"
         android:ems="10" />
+    
+   	<LinearLayout
+  	    android:layout_width="match_parent"
+  	    android:layout_height="wrap_content"
+  	    android:paddingTop="15dp" >
+  		<EditText
+  		    android:id="@+id/contact"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="wrap_content"
+  		    android:layout_weight="1"
+  		    android:hint="Contact PMR"
+  		    android:singleLine="true"
+  		    android:ems="10" />
+
+  		<EditText
+  		    android:id="@+id/contactExt"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="wrap_content"
+  		    android:layout_weight="1"
+  		    android:hint="Contact externe"
+  		    android:singleLine="true"
+  		    android:ems="10" />
+  	</LinearLayout>
     
   	<TextView
         android:layout_width="wrap_content"
@@ -109,7 +135,7 @@
   	<LinearLayout
   	    android:layout_width="match_parent"
   	    android:layout_height="wrap_content" 
-  	    android:layout_marginTop="30dp">
+  	    android:layout_marginTop="20dp">
   		  	<Button
   	  	        android:id="@+id/enregistrer"
   	  	        android:layout_width="wrap_content"
