@@ -15,6 +15,7 @@ import com.example.terassiste.metier.Evenement;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	protected Point _oldPosition = null;
 	protected int new_x = -1;
 	protected int new_y = -1;
+	
+	protected Drawable defaultTextViewBackground;
 	
 	protected AutoCompleteTextView gareDep;
 	protected AutoCompleteTextView gareArr;
@@ -67,6 +70,8 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 		gareDep.setAdapter(adapter);
 		gareArr.setAdapter(adapter);
 
+		this.defaultTextViewBackground = gareDep.getBackground();
+		
 		train = (AutoCompleteTextView) this._view.findViewById(R.id.textNumTrain);
 		List<String> listeNumTrain = this._parentActivity.getListNumTrain();
 		ArrayAdapter numTrainAdapter = new ArrayAdapter(this._parentActivity, android.R.layout.simple_list_item_1, listeNumTrain);
@@ -162,6 +167,24 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
     		check = false;
     	} else {
     		heureArr.setTextColor(Color.BLACK);
+    	}
+    	
+    	TextView nomPmr = (TextView)this._view.findViewById(R.id.textNom);
+    	TextView prenomPmr = (TextView)this._view.findViewById(R.id.textPrenom);
+    	TextView numTain = (TextView)this._view.findViewById(R.id.textNumTrain);
+    	TextView gareDep = (TextView)this._view.findViewById(R.id.gareDep);
+    	TextView gareArr = (TextView) this._view.findViewById(R.id.gareArr);
+    	TextView[] textviews = new TextView[]{
+    			nomPmr, prenomPmr, numTain, gareDep, gareArr
+    	};
+    	for(int i=0;i<textviews.length;++i){
+    		TextView tv = textviews[i];
+    		if(tv.getText().length() == 0){
+    			tv.setBackgroundColor(0xAAFF0000);
+    			check = false;
+    		}else{
+    			tv.setBackground(defaultTextViewBackground);
+    		}
     	}
         
 		return check;
