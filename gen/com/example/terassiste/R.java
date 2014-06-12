@@ -47,8 +47,9 @@ public final class R {
         public static final int logo_ter_app=0x7f020011;
         public static final int plan=0x7f020012;
         public static final int plan2=0x7f020013;
-        public static final int train=0x7f020014;
-        public static final int train_logo=0x7f020015;
+        public static final int plan_non_num=0x7f020014;
+        public static final int train=0x7f020015;
+        public static final int train_logo=0x7f020016;
     }
     public static final class id {
         public static final int action_settings=0x7f0a0031;
