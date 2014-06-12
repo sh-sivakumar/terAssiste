@@ -35,7 +35,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 
 	private Bitmap plan;
 	private Point planOffset;
-	private float planScale;// ça nous servira pour redimentionner le plan et
+	private float planScale;// ��a nous servira pour redimentionner le plan et
 							// repositionner les places
 	
 	private Point screenSize;
@@ -43,7 +43,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 	
 	private boolean isReadOnly = false;
 
-	// Les objects nécessaires pour dessiner la cible
+	// Les objects n��cessaires pour dessiner la cible
 	PlaceTargetDrawer targetDrawer = null;
 	private Point targetDrawerBeginPlace = null;
 
@@ -53,7 +53,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		this.holder = this.getHolder();
 		this.holder.addCallback(this);
 
-		this.setKeepScreenOn(true);// On garde l'écran allumé
+		this.setKeepScreenOn(true);// On garde l'��cran allum��
 		this.setOnTouchListener(new PlaceSelectTouchListener(this));
 		this.setLongClickable(true);
 		
@@ -116,7 +116,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		this.screenSize = new Point(this.getWidth(), this.getHeight());
 
 		// Et ensuite on redimentionne le plan en fonction de la taille de
-		// l'écran
+		// l'��cran
 		this.plan = BitmapFactory.decodeResource(getResources(),
 				R.drawable.plan);
 		int finalPlanWidth = (int) (this.screenSize.x * 0.8);
@@ -127,7 +127,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		this.plan = Bitmap.createBitmap(this.plan, 0, 0, this.plan.getWidth(),
 				this.plan.getHeight(), matrix, true);
 
-		// Et puis faut aussi calculer où commencer à dessiner le plan
+		// Et puis faut aussi calculer o�� commencer �� dessiner le plan
 
 		Point relativeCentralPoint = this.calculRelativeCentralPoint(this.plan.getWidth(), this.plan.getHeight());
 
@@ -137,7 +137,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 			int transformedX = (int) (targetDrawerBeginPlace.x * this.planScale);
 			int transformedY = (int) (targetDrawerBeginPlace.y * this.planScale);
 			
-			//puis on trouve les positons par raport à l'écran
+			//puis on trouve les positons par raport �� l'��cran
 			transformedX += this.planOffset.x;
 			transformedY += this.planOffset.y;
 			
@@ -147,7 +147,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 				this.targetDrawer.MoveTo(transformedX, transformedY);
 			}
 		}
-		// Et à la fin on commence à dessiner le plan
+		// Et �� la fin on commence �� dessiner le plan
 		this.workThread.start();
 	}
 
@@ -193,9 +193,10 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 			Canvas canvas = this.holder.lockCanvas();
 
 			Paint clearPaint = new Paint();
-			clearPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
+			//clearPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
+			clearPaint.setColor(Color.WHITE);
 			canvas.drawPaint(clearPaint);
-			clearPaint.setXfermode(new PorterDuffXfermode(Mode.SRC));
+			//clearPaint.setXfermode(new PorterDuffXfermode(Mode.SRC));
 
 			canvas.drawBitmap(this.plan, this.planOffset.x, this.planOffset.y,
 					null);
@@ -211,9 +212,9 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 			String str = "Height:" + this.screenSize.y + "; Width:"
 					+ this.screenSize.x;
 
-			Rect bound = new Rect();
-			paint.getTextBounds(str, 0, str.length(), bound);
-			canvas.drawText(str, 10, 10 + bound.height(), paint);
+			//Rect bound = new Rect();
+			//paint.getTextBounds(str, 0, str.length(), bound);
+			//canvas.drawText(str, 10, 10 + bound.height(), paint);
 
 			this.holder.unlockCanvasAndPost(canvas);
 		}
