@@ -122,6 +122,12 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			EditText heureArr = (EditText) this._view.findViewById(R.id.heureArr);
 			heureArr.setText(jsonReturn.getString("heureArr"));
 			
+			EditText contact = (EditText) this._view.findViewById(R.id.contact);
+			contact.setText(jsonReturn.getString("contactPMR"));
+			
+			EditText contactExterne = (EditText) this._view.findViewById(R.id.contactExt);
+			contactExterne.setText(jsonReturn.getString("contactPMRExterne"));
+			
 			int x = jsonReturn.getInt("x");
 			int y = jsonReturn.getInt("y");
 			
@@ -171,6 +177,8 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 		TextView heureDep = (TextView) this._view.findViewById(R.id.heureDep);
 		TextView gareArr = (TextView) this._view.findViewById(R.id.gareArr);
 		TextView heureArr = (TextView) this._view.findViewById(R.id.heureArr);
+		TextView contact = (TextView) this._view.findViewById(R.id.contact);
+		TextView contactExterne = (TextView) this._view.findViewById(R.id.contactExt);
 		JSONObject jsonObject= new JSONObject();
 		try {
 			jsonObject.put("idEvent", this.idEvenement);
@@ -181,6 +189,8 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			jsonObject.put("heureDep", heureDep.getText().toString());
 			jsonObject.put("gareArr", gareArr.getText().toString());
 			jsonObject.put("heureArr", heureArr.getText().toString());
+			jsonObject.put("contact", contact.getText().toString());
+			jsonObject.put("contactExt", contactExterne.getText().toString());
 
 			jsonObject.put("x", this.new_x);
 			jsonObject.put("y", this.new_y);

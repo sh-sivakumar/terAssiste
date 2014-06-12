@@ -114,6 +114,9 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 		TextView heureDep = (TextView) this._view.findViewById(R.id.heureDep);
 		AutoCompleteTextView gareArr = (AutoCompleteTextView) this._view.findViewById(R.id.gareArr);
 		TextView heureArr = (TextView) this._view.findViewById(R.id.heureArr);
+		TextView contact = (TextView) this._view.findViewById(R.id.contact);
+		TextView contactExterne = (TextView) this._view.findViewById(R.id.contactExt);
+		
 		JSONObject jsonObject= new JSONObject();
 		try {
 			jsonObject.put("nom", name.getText().toString());
@@ -126,7 +129,8 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 			jsonObject.put("x", this.new_x);
 			jsonObject.put("y", this.new_y);
 			jsonObject.put("agent", this._parentActivity.getUtilisateur().getLogin());
-			
+			jsonObject.put("contact", contact.getText().toString());
+			jsonObject.put("contactExt", contactExterne.getText().toString());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
