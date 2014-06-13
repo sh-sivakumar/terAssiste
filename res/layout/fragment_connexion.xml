@@ -18,9 +18,10 @@
         android:id="@+id/txtBienvenue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:textColor="#ffffff"
         android:paddingBottom="50dp"
-        android:text="Connectez vous, afin de pouvoir suivre les trajets en cours. L'application est une version beta." />
+        android:text="Connectez vous, afin de pouvoir suivre les trajets en cours. L'aide aux PMR est enfin à portée de main !" />
 
     <EditText
         android:id="@+id/textIdentifiant"
