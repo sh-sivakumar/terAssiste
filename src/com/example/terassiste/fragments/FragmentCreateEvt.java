@@ -82,9 +82,10 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	
 	@Override
 	public void onClick(View v) {
+		boolean suite;
 		switch(v.getId()){
 			case R.id.suivant:
-				boolean suite = checkForm();
+				suite = checkForm();
 				if(suite){
 					this._parentActivity.ViewPlaceOnTheMap(new OnPositionSelectOneShotListener(){
 	
@@ -100,8 +101,11 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 				}
 				break;
 			case R.id.enregistrer:
-				addEvt();
-				this._parentActivity.switchFragment(new FragmentListeEvt());
+				suite = checkForm();
+				if(suite){
+					addEvt();
+					this._parentActivity.switchFragment(new FragmentListeEvt());
+				}
 				break;
 		}
 		
@@ -151,6 +155,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	public Evenement genereEvenement(int x, int y) {
 		this.new_x = x;
 		this.new_y = y;
+		this._view.findViewById(R.id.enregistrer).setVisibility(View.VISIBLE);
 		return null;
 	}
 	

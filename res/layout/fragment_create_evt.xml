@@ -143,6 +143,7 @@
   	  	        android:layout_marginRight="5dp"
   	  	        android:layout_weight="1"
   	  	        android:background="@drawable/list_selector"
+  	  	        android:visibility="gone"
   	  	        android:text="Enregistrer" />
 
   	  	    <Button

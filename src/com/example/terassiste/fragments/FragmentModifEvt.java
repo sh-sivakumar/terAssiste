@@ -1,5 +1,6 @@
 package com.example.terassiste.fragments;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
@@ -21,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +35,10 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 	private static final String URL = "http://terassistee.netai.net/detailevent.php";
 	private static final String URL_update = "http://terassistee.netai.net/updateevent.php";
 
+	protected AutoCompleteTextView gareDep;
+	protected AutoCompleteTextView gareArr;
+	protected AutoCompleteTextView train;
+	
 	public FragmentModifEvt(int id) {
 		this.idEvenement = id;
 	}
@@ -61,6 +68,11 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 		
 		/* ----- Fin : Test JSON ----- */
 		
+		recupEvt(inflater, container);
+		return this._view;
+	}
+	
+	public void recupEvt(LayoutInflater inflater, ViewGroup container) {
 		JSONObject jsonObject= new JSONObject();
 		try {
 			jsonObject.put("idEvent", this.idEvenement);
@@ -85,6 +97,22 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 				this._view = inflater.inflate(R.layout.fragment_create_evt, container, false);
 				this._view.findViewById(R.id.suivant).setOnClickListener(this);
 				this._view.findViewById(R.id.enregistrer).setOnClickListener(this);
+				this._view.findViewById(R.id.enregistrer).setVisibility(View.VISIBLE);
+				
+				String[] listeGares = getResources().getStringArray(R.array.liste_gares);
+				gareDep = (AutoCompleteTextView) this._view.findViewById(R.id.gareDep);
+				gareArr = (AutoCompleteTextView) this._view.findViewById(R.id.gareArr);
+				ArrayAdapter adapter = new ArrayAdapter(this._parentActivity, android.R.layout.simple_list_item_1, listeGares);
+				gareDep.setAdapter(adapter);
+				gareArr.setAdapter(adapter);
+
+				this.defaultTextViewBackground = gareDep.getBackground();
+				
+				train = (AutoCompleteTextView) this._view.findViewById(R.id.textNumTrain);
+				List<String> listeNumTrain = this._parentActivity.getListNumTrain();
+				ArrayAdapter numTrainAdapter = new ArrayAdapter(this._parentActivity, android.R.layout.simple_list_item_1, listeNumTrain);
+				train.setAdapter(numTrainAdapter);
+				
 				fillForm(jsonReturn);
 			} else {
 				this._view = inflater.inflate(R.layout.empty_fragment, container, false);
@@ -94,8 +122,6 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-	
-		return this._view;
 	}
 	
 	public void fillForm(JSONObject jsonReturn) {
@@ -107,16 +133,16 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 			EditText prenom = (EditText) this._view.findViewById(R.id.textPrenom);
 			prenom.setText(jsonReturn.getString("prenom"));
 			
-			EditText train = (EditText) this._view.findViewById(R.id.textNumTrain);
+			AutoCompleteTextView train = (AutoCompleteTextView) this._view.findViewById(R.id.textNumTrain);
 			train.setText(jsonReturn.getString("train"));
 			
-			EditText gareDep = (EditText) this._view.findViewById(R.id.gareDep);
+			AutoCompleteTextView gareDep = (AutoCompleteTextView) this._view.findViewById(R.id.gareDep);
 			gareDep.setText(jsonReturn.getString("gareDep"));
 			
 			EditText heureDep = (EditText) this._view.findViewById(R.id.heureDep);
 			heureDep.setText(jsonReturn.getString("heureDep"));
 			
-			EditText gareArr = (EditText) this._view.findViewById(R.id.gareArr);
+			AutoCompleteTextView gareArr = (AutoCompleteTextView) this._view.findViewById(R.id.gareArr);
 			gareArr.setText(jsonReturn.getString("gareArr"));
 			
 			EditText heureArr = (EditText) this._view.findViewById(R.id.heureArr);
@@ -146,9 +172,10 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 	
 	@Override
 	public void onClick(View v) {
+		boolean suite;
 		switch(v.getId()){
 			case R.id.suivant:
-				boolean suite = checkForm();
+				suite = checkForm();
 				if(suite){
 					this._parentActivity.ViewPlaceOnTheMap(new OnPositionSelectOneShotListener(){
 	
@@ -163,8 +190,11 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 				}
 				break;
 			case R.id.enregistrer:
-				updateEvt();
-				this._parentActivity.switchFragment(new FragmentListeEvt());
+				suite = checkForm();
+				if(suite){
+					updateEvt();
+					this._parentActivity.switchFragment(new FragmentListeEvt());
+				}
 				break;
 		}
 	}
