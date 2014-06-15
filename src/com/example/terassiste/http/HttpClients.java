@@ -19,6 +19,7 @@ import android.util.Log;
 
 /**
  * Classe permettant de gerer la connection a la base de donnees.
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
  */
 public class HttpClients {
 	private static final String TAG = "HttpClient";

@@ -29,8 +29,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
+ * Classe permettant de gerer le systeme de creation d'evenement (fragment)
  * @author Shinthujan, Jian, Walid, Wally, Youssef
- * Classe permettant de gerer le systeme de création d'événement (fragment)
  */
 public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	
@@ -86,7 +86,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	
 	@Override
 	/**
-	 * Méthode permettant de gérér l'évenement onclick sur un bouton.
+	 * Methode permettant de gerer l'evenement onclick sur un bouton.
 	 */
 	public void onClick(View v) {
 		boolean suite;
@@ -119,9 +119,9 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	}
 	
 	/**
-	 * Méthode qui permet de gérer l'ajout d'un évenement.
-	 * Elle récupere les informations saisit par l'utilisateur et les envoi
-	 * au format JSON, au serveur qui se charge de retourner la réponse au format JSON.
+	 * Methode qui permet de gerer l'ajout d'un evenement.
+	 * Elle recupere les informations saisit par l'utilisateur et les envoi
+	 * au format JSON, au serveur qui se charge de retourner la reponse au format JSON.
 	 */
 	public void addEvt() {
 		TextView name = (TextView) this._view.findViewById(R.id.textNom);
@@ -172,7 +172,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	}
 	
 	/**
-	 * Fonction qui vérifie si les informations saisit par l'utilisateur sont valides.
+	 * Fonction qui verifie si les informations saisit par l'utilisateur sont valides.
 	 * Retourne true si les informations sont correctes sinon false.
 	 * @return check
 	 */

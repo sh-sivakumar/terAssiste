@@ -21,8 +21,8 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 /**
- * @author Shinthujan, Jian, Walid, Wally, Youssef
  * Classe permettant de gerer le systeme de connection (fragment)
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
  */
 public class FragmentConnexion extends Fragment implements OnClickListener {
 	private static final String TAG = "FragmentConnexion";
@@ -40,7 +40,7 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 	
 	@Override
 	/**
-	 * Méthode se déclenchant à la création de la vue.
+	 * Methode se declenchant a la creation de la vue.
 	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		this._mainActivity.actionBar.setDisplayHomeAsUpEnabled(false);
@@ -53,7 +53,7 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 
 	@Override
 	/**
-	 * Méthode permettant de gérér l'évenement onclick sur un bouton.
+	 * Methode permettant de gerer l'evenement onclick sur un bouton.
 	 */
 	public void onClick(View v) {
 		switch(v.getId()) {
@@ -70,9 +70,9 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 	}
 	
 	/**
-	 * Méthode qui permet de gérer la connexion.
-	 * Elle récupere l'identifiant et le mot de passe saisit par l'utilisateur et envoi ces informations
-	 * au format JSON, au serveur qui se charge de retourner la réponse au format JSON.
+	 * Methode qui permet de gerer la connexion.
+	 * Elle recupere l'identifiant et le mot de passe saisit par l'utilisateur et envoi ces informations
+	 * au format JSON, au serveur qui se charge de retourner la reponse au format JSON.
 	 * @param v
 	 * @throws JSONException
 	 */

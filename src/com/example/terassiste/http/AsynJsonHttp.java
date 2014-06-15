@@ -4,9 +4,9 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 
 /**
- * @author Shinthujan, Jian, Walid, Wally, Youssef
  * Classe qui cree un thread en parallele du thread principal et qui appelle la classe permettant de gerer
  * la connection a un serveur.
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
  */
 public class AsynJsonHttp extends AsyncTask<JSONObject, Integer, JSONObject>{
 	

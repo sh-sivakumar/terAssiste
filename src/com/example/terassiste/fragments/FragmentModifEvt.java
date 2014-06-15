@@ -29,9 +29,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
+ * Classe qui herite de FragmentCreateEvt et qui permet de gerer le systeme de modification
+ * d'un evenement (fragment)
  * @author Shinthujan, Jian, Walid, Wally, Youssef
- * Classe qui hérite de FragmentCreateEvt et qui permet de gerer le systeme de modification
- * d'un événement (fragment)
  */
 public class FragmentModifEvt extends FragmentCreateEvt {
 	private int idEvenement;
@@ -78,7 +78,7 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 	}
 	
 	/**
-	 * Méthode qui récupere les informations sur l'évenement à modifier
+	 * Methode qui recupere les informations sur l'evenement a modifier
 	 * @param inflater
 	 * @param container
 	 */
@@ -135,7 +135,7 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 	}
 	
 	/**
-	 * Méthode qui remplit le formulaire avec un JSON recu en parametre
+	 * Methode qui remplit le formulaire avec un JSON recu en parametre
 	 * @param jsonReturn
 	 */
 	public void fillForm(JSONObject jsonReturn) {
@@ -186,7 +186,7 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 	
 	@Override
 	/**
-	 * Méthode permettant de gérér l'évenement onclick sur un bouton.
+	 * Methode permettant de gerer l'evenement onclick sur un bouton.
 	 */
 	public void onClick(View v) {
 		boolean suite;
@@ -217,8 +217,8 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 	}
 	
 	/**
-	 * Méthode qui met à jour l'événement, en recuperant les informations saisit par l'utilisateur
-	 * et les envoyant au serveur au format JSON, qui retourne la réponse au format JSON. 
+	 * Methode qui met a jour l'evenement, en recuperant les informations saisit par l'utilisateur
+	 * et les envoyant au serveur au format JSON, qui retourne la reponse au format JSON. 
 	 */
 	public void updateEvt() {
 		TextView name = (TextView) this._view.findViewById(R.id.textNom);

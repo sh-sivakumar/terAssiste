@@ -26,8 +26,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 /**
+ * Classe principale, qui permet de gerer l'application.
  * @author Shinthujan, Jian, Walid, Wally, Youssef
- * Classe principale, qui permet de gérer l'application.
  */
 @TargetApi(Build.VERSION_CODES.KITKAT)
 @SuppressLint("NewApi")
@@ -51,8 +51,8 @@ public class MainActivity extends FragmentActivity {
 	@SuppressLint("NewApi")
 	@Override
 	/**
-	 * Méthode se déclenchant à la création de l'activity.
-	 * Elle crée la barre d'action (haut) et appelle le fragment connexion.
+	 * Methode se declenchant a la creation de l'activity.
+	 * Elle cree la barre d'action (haut) et appelle le fragment connexion.
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,8 +70,8 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	/**
-	 * Méthode qui permet recoit en parametre une liste de train et qui affecte ce dernier
-	 * à la variable : _liste_numTrain
+	 * Methode qui permet recoit en parametre une liste de train et qui affecte ce dernier
+	 * a la variable : _liste_numTrain
 	 * @param listeNumTrain
 	 */
 	public void setListNumTrain(List<String> listeNumTrain){
@@ -143,7 +143,7 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	/**
-	 * Cette méthode recoit en parametre un fragment et se charge de "switcher" du fragment courant vers
+	 * Cette methode recoit en parametre un fragment et se charge de "switcher" du fragment courant vers
 	 * le fragment en parametre.
 	 * @param fragment
 	 */
@@ -155,7 +155,7 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	/**
-	 * Méthode permettant de fermer le slide menu.
+	 * Methode permettant de fermer le slide menu.
 	 */
 	public void closeSlideMenu() {
 		this._drawerLayout.closeDrawer(Gravity.LEFT);
@@ -163,7 +163,7 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	/**
-	 * Méthode permettant d'ouvrir le slide menu.
+	 * Methode permettant d'ouvrir le slide menu.
 	 */
 	public void openSlideMenu() {
 		this._drawerLayout.openDrawer(Gravity.LEFT);

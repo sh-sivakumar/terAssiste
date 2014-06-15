@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 public class PlaceSelectTouchListener implements OnTouchListener {
 	private PlaceSelectionView view;
-	private static int CLICK_MARGIN = 50;// Il faut bouger aumoin 50 pixel pour
-											// considerer comme un slide
+	private static int CLICK_MARGIN = 50;// Il faut effectuer une manoeuvre de 50 pixel pour
+										// que ce soit considere comme un slide
 	private static int LONG_PRESS_DURATION_DETECT = 1500;
 
 	private float lastX, lastY;
