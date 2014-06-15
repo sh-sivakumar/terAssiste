@@ -1,29 +1,48 @@
 package com.example.terassiste.metier;
 
-import java.util.Date;
-
-import android.graphics.Point;
-
 public class Evenement {
-	public String nomPmr;
-	public String prenomPmr;
-	public String numTrain;
-	public String depart;
-	public String arrivee;
-	public String agent;
-	public Date heureDepart;
-	public Date heureArrivee;
-	public Point pmrPosition;
+	private Client client;
+	private String numTrain;
+	private String agent;
+	private Assistance assistance;
 	
-	public Evenement(String pmrN, String pmrP, String numT, String dep, String arr, String ag, Date heureD, Date heureA, Point pmrPos){
-		this.nomPmr = pmrN;
-		this.prenomPmr = pmrP;
+	public Evenement(Client client, String numT, String ag, Assistance assistance){
+		this.client = client;
 		this.numTrain = numT;
-		this.depart = dep;
-		this.arrivee = arr;
-		this.heureDepart = heureD;
-		this.heureArrivee = heureA;
-		this.pmrPosition = pmrPos;
+		this.assistance = assistance;
 		this.agent = ag;
 	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public String getNumTrain() {
+		return numTrain;
+	}
+
+	public void setNumTrain(String numTrain) {
+		this.numTrain = numTrain;
+	}
+
+	public String getAgent() {
+		return agent;
+	}
+
+	public void setAgent(String agent) {
+		this.agent = agent;
+	}
+
+	public Assistance getAssistance() {
+		return assistance;
+	}
+
+	public void setAssistance(Assistance assistance) {
+		this.assistance = assistance;
+	}
+	
 }

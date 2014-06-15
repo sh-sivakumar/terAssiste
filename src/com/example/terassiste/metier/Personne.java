@@ -1,14 +1,16 @@
 package com.example.terassiste.metier;
 
+/**
+ * Classe permettant de gerer une personne
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ */
 public class Personne {
 	private String nom;
 	private String prenom;
-	//private String contact;
 	
 	public Personne(String nom, String prenom) {
 		this.nom = nom;
 		this.prenom = prenom;
-		//this.contact = contact;
 	}
 
 	public String getNom() {

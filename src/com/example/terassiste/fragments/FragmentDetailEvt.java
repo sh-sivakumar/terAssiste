@@ -8,6 +8,9 @@ import org.json.JSONObject;
 import com.example.terassiste.R;
 import com.example.terassiste.MainActivity;
 import com.example.terassiste.http.AsynJsonHttp;
+import com.example.terassiste.metier.Assistance;
+import com.example.terassiste.metier.Client;
+import com.example.terassiste.metier.Evenement;
 
 import android.app.Activity;
 import android.graphics.Point;
@@ -28,9 +31,8 @@ import android.widget.TextView;
  */
 public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	private int idEvenement;
-	private String nom;
-	private String prenom;
-	private String train;
+	private Evenement evt;
+
 	private Point position;
 	
 	private View 				_view;
@@ -42,9 +44,6 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	
 	public FragmentDetailEvt(int id, String nom, String prenom, String train, Point pos) {
 		this.idEvenement = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.train = train;
 		this.position = pos;
 		
 	}
@@ -124,27 +123,14 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	 * @param jsonReturn
 	 */
 	public void fillForm(JSONObject jsonReturn) {
-		try {
+		try {	
 			TextView name = (TextView) this._view.findViewById(R.id.name_pmr);
-			name.setText(jsonReturn.getString("nom") + " " + jsonReturn.getString("prenom"));
-			
 			TextView agent = (TextView) this._view.findViewById(R.id.name_agent);
-			agent.setText("Ajoute par " + jsonReturn.getString("agent"));
-			
 			TextView train = (TextView) this._view.findViewById(R.id.num_train);
-			train.setText("Train numero: " + jsonReturn.getString("train"));
-			
 			TextView gareDep = (TextView) this._view.findViewById(R.id.gare_dep);
-			gareDep.setText(jsonReturn.getString("gareDep"));
-			
 			TextView heureDep = (TextView) this._view.findViewById(R.id.heure_dep);
-			heureDep.setText(jsonReturn.getString("heureDep"));
-			
-			TextView gareArr = (TextView) this._view.findViewById(R.id.gare_arr);
-			gareArr.setText(jsonReturn.getString("gareArr"));
-			
+			TextView gareArr = (TextView) this._view.findViewById(R.id.gare_arr);	
 			TextView heureArr = (TextView) this._view.findViewById(R.id.heure_arr);
-			heureArr.setText(jsonReturn.getString("heureArr"));
 			
 			String contactPmrStr="Non defini";
 			if(!jsonReturn.getString("contactPMR").isEmpty()) {
@@ -166,6 +152,24 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 			}
 			TextView contactAgent = (TextView) this._view.findViewById(R.id.contact_agent);
 			contactAgent.setText("Contact agent :" + contactAgentStr);
+			
+			
+			Client client = new Client(jsonReturn.getString("nom"), jsonReturn.getString("prenom"), 
+					contactPmrStr, contactExternePmrStr);
+			
+			Assistance assistance = new Assistance(jsonReturn.getString("gareDep"), jsonReturn.getString("gareArr"), 
+					jsonReturn.getString("heureDep"), jsonReturn.getString("heureArr"));
+			
+			this.evt = new Evenement(client, jsonReturn.getString("train"), jsonReturn.getString("agent"), assistance);
+			
+			name.setText(this.evt.getClient().getNom() + " " + this.evt.getClient().getPrenom());
+			agent.setText("Ajoute par " + this.evt.getAgent());
+			train.setText("Train numero: " + this.evt.getNumTrain());
+			gareDep.setText(this.evt.getAssistance().getDepart());
+			heureDep.setText(this.evt.getAssistance().getHeureDebarquement());
+			gareArr.setText(this.evt.getAssistance().getArrivee());
+			heureArr.setText(this.evt.getAssistance().getHeureArriveeEstime());
+			
 			
 		} catch (JSONException e) {
 			e.printStackTrace();

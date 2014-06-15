@@ -10,6 +10,8 @@ import com.example.terassiste.R;
 import com.example.terassiste.MainActivity;
 import com.example.terassiste.PlaceSelect.OnPositionSelectOneShotListener;
 import com.example.terassiste.http.AsynJsonHttp;
+import com.example.terassiste.metier.Assistance;
+import com.example.terassiste.metier.Client;
 import com.example.terassiste.metier.Evenement;
 
 import android.app.Activity;
@@ -35,6 +37,8 @@ import android.widget.TextView;
  */
 public class FragmentModifEvt extends FragmentCreateEvt {
 	private int idEvenement;
+	private Evenement oldEvt;
+	private Evenement newEvt;
 	
 	private static final String TAG = "FragmentDetailEvt";
 	private static final String URL = "http://terassistee.netai.net/detailevent.php";
@@ -142,31 +146,32 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 		try {
 			
 			EditText nom = (EditText) this._view.findViewById(R.id.textNom);
-			nom.setText(jsonReturn.getString("nom"));
-			
 			EditText prenom = (EditText) this._view.findViewById(R.id.textPrenom);
-			prenom.setText(jsonReturn.getString("prenom"));
-			
-			AutoCompleteTextView train = (AutoCompleteTextView) this._view.findViewById(R.id.textNumTrain);
-			train.setText(jsonReturn.getString("train"));
-			
+			AutoCompleteTextView train = (AutoCompleteTextView) this._view.findViewById(R.id.textNumTrain);			
 			AutoCompleteTextView gareDep = (AutoCompleteTextView) this._view.findViewById(R.id.gareDep);
-			gareDep.setText(jsonReturn.getString("gareDep"));
-			
 			EditText heureDep = (EditText) this._view.findViewById(R.id.heureDep);
-			heureDep.setText(jsonReturn.getString("heureDep"));
-			
 			AutoCompleteTextView gareArr = (AutoCompleteTextView) this._view.findViewById(R.id.gareArr);
-			gareArr.setText(jsonReturn.getString("gareArr"));
-			
 			EditText heureArr = (EditText) this._view.findViewById(R.id.heureArr);
-			heureArr.setText(jsonReturn.getString("heureArr"));
-			
 			EditText contact = (EditText) this._view.findViewById(R.id.contact);
-			contact.setText(jsonReturn.getString("contactPMR"));
-			
 			EditText contactExterne = (EditText) this._view.findViewById(R.id.contactExt);
-			contactExterne.setText(jsonReturn.getString("contactPMRExterne"));
+			
+			Client client = new Client(jsonReturn.getString("nom"), jsonReturn.getString("prenom"), 
+					jsonReturn.getString("contactPMR"), jsonReturn.getString("contactPMRExterne"));
+			
+			Assistance assistance = new Assistance(jsonReturn.getString("gareDep"), jsonReturn.getString("gareArr"), 
+					jsonReturn.getString("heureDep"), jsonReturn.getString("heureArr"));
+			
+			this.oldEvt = new Evenement(client, jsonReturn.getString("train"), jsonReturn.getString("agent"), assistance);
+			
+			nom.setText(this.oldEvt.getClient().getNom());
+			prenom.setText(this.oldEvt.getClient().getPrenom());
+			train.setText(this.oldEvt.getNumTrain());
+			gareDep.setText(this.oldEvt.getAssistance().getDepart());
+			heureDep.setText(this.oldEvt.getAssistance().getHeureDebarquement());
+			gareArr.setText(this.oldEvt.getAssistance().getArrivee());
+			heureArr.setText(this.oldEvt.getAssistance().getHeureArriveeEstime());
+			contact.setText(this.oldEvt.getClient().getNumClient());
+			contactExterne.setText(this.oldEvt.getClient().getContactExterneClient());
 			
 			int x = jsonReturn.getInt("x");
 			int y = jsonReturn.getInt("y");
@@ -230,18 +235,28 @@ public class FragmentModifEvt extends FragmentCreateEvt {
 		TextView heureArr = (TextView) this._view.findViewById(R.id.heureArr);
 		TextView contact = (TextView) this._view.findViewById(R.id.contact);
 		TextView contactExterne = (TextView) this._view.findViewById(R.id.contactExt);
+		
+		Client client = new Client(name.getText().toString(), prenom.getText().toString(), 
+				contact.getText().toString(), contactExterne.getText().toString());
+		
+		Assistance assistance = new Assistance(gareDep.getText().toString(), gareArr.getText().toString(), 
+				heureDep.getText().toString(), heureArr.getText().toString());
+		
+		this.newEvt = new Evenement(client, train.getText().toString(), 
+				this._parentActivity.getUtilisateur().getLogin(), assistance);
+		
 		JSONObject jsonObject= new JSONObject();
 		try {
 			jsonObject.put("idEvent", this.idEvenement);
-			jsonObject.put("nom", name.getText().toString());
-			jsonObject.put("prenom", prenom.getText().toString());
-			jsonObject.put("train", train.getText().toString());
-			jsonObject.put("gareDep", gareDep.getText().toString());
-			jsonObject.put("heureDep", heureDep.getText().toString());
-			jsonObject.put("gareArr", gareArr.getText().toString());
-			jsonObject.put("heureArr", heureArr.getText().toString());
-			jsonObject.put("contact", contact.getText().toString());
-			jsonObject.put("contactExt", contactExterne.getText().toString());
+			jsonObject.put("nom", this.newEvt.getClient().getNom());
+			jsonObject.put("prenom", this.newEvt.getClient().getPrenom());
+			jsonObject.put("train", this.newEvt.getNumTrain());
+			jsonObject.put("gareDep", this.newEvt.getAssistance().getDepart());
+			jsonObject.put("heureDep", this.newEvt.getAssistance().getHeureDebarquement());
+			jsonObject.put("gareArr", this.newEvt.getAssistance().getArrivee());
+			jsonObject.put("heureArr", this.newEvt.getAssistance().getHeureArriveeEstime());
+			jsonObject.put("contact", this.newEvt.getClient().getNumClient());
+			jsonObject.put("contactExt", this.newEvt.getClient().getContactExterneClient());
 
 			jsonObject.put("x", this.new_x);
 			jsonObject.put("y", this.new_y);

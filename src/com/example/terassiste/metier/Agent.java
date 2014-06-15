@@ -1,5 +1,9 @@
 package com.example.terassiste.metier;
 
+/**
+ * Classe heritant de Personne, cette classe correspond a l'agent utilisant l'application.
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ */
 public class Agent extends Personne {
 	private String login;
 	

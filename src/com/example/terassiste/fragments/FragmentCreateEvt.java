@@ -10,6 +10,8 @@ import com.example.terassiste.R;
 import com.example.terassiste.MainActivity;
 import com.example.terassiste.PlaceSelect.OnPositionSelectOneShotListener;
 import com.example.terassiste.http.AsynJsonHttp;
+import com.example.terassiste.metier.Assistance;
+import com.example.terassiste.metier.Client;
 import com.example.terassiste.metier.Evenement;
 
 import android.app.Activity;
@@ -40,6 +42,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 	protected int new_x = -1;
 	protected int new_y = -1;
 	
+	private Evenement evt;
 	protected Drawable defaultTextViewBackground;
 	
 	protected AutoCompleteTextView gareDep;
@@ -133,20 +136,29 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 		TextView contact = (TextView) this._view.findViewById(R.id.contact);
 		TextView contactExterne = (TextView) this._view.findViewById(R.id.contactExt);
 		
+		Client client = new Client(name.getText().toString(), prenom.getText().toString(), 
+				contact.getText().toString(), contactExterne.getText().toString());
+		
+		Assistance assistance = new Assistance(gareDep.getText().toString(), gareArr.getText().toString(), 
+				heureDep.getText().toString(), heureArr.getText().toString());
+		
+		this.evt = new Evenement(client, train.getText().toString(), 
+				this._parentActivity.getUtilisateur().getLogin(), assistance);
+		
 		JSONObject jsonObject= new JSONObject();
 		try {
-			jsonObject.put("nom", name.getText().toString());
-			jsonObject.put("prenom", prenom.getText().toString());
-			jsonObject.put("train", train.getText().toString());
-			jsonObject.put("gareDep", gareDep.getText().toString());
-			jsonObject.put("heureDep", heureDep.getText().toString());
-			jsonObject.put("gareArr", gareArr.getText().toString());
-			jsonObject.put("heureArr", heureArr.getText().toString());
+			jsonObject.put("nom", this.evt.getClient().getNom());
+			jsonObject.put("prenom", this.evt.getClient().getPrenom());
+			jsonObject.put("train", this.evt.getNumTrain());
+			jsonObject.put("gareDep", this.evt.getAssistance().getDepart());
+			jsonObject.put("heureDep", this.evt.getAssistance().getHeureDebarquement());
+			jsonObject.put("gareArr", this.evt.getAssistance().getArrivee());
+			jsonObject.put("heureArr", this.evt.getAssistance().getHeureArriveeEstime());
 			jsonObject.put("x", this.new_x);
 			jsonObject.put("y", this.new_y);
 			jsonObject.put("agent", this._parentActivity.getUtilisateur().getLogin());
-			jsonObject.put("contact", contact.getText().toString());
-			jsonObject.put("contactExt", contactExterne.getText().toString());
+			jsonObject.put("contact", this.evt.getClient().getNumClient());
+			jsonObject.put("contactExt", this.evt.getClient().getContactExterneClient());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
