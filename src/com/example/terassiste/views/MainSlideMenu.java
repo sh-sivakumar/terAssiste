@@ -16,6 +16,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.view.View.OnClickListener;
 
+/**
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ * Classe permettant de gérer le slide menu de gauche. (vue)
+ * C'est cette classe qui permet d'appeler/crée les fragments désirés.
+ */
 public class MainSlideMenu extends LinearLayout implements OnClickListener{
 	
 	private MainActivity	_mainActivity;

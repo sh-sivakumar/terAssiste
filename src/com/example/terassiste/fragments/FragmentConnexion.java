@@ -20,6 +20,10 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+/**
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ * Classe permettant de gerer le systeme de connection (fragment)
+ */
 public class FragmentConnexion extends Fragment implements OnClickListener {
 	private static final String TAG = "FragmentConnexion";
 	private static final String URL = "http://terassistee.netai.net/connect.php";
@@ -35,6 +39,9 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 	}
 	
 	@Override
+	/**
+	 * Méthode se déclenchant à la création de la vue.
+	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		this._mainActivity.actionBar.setDisplayHomeAsUpEnabled(false);
 		this._mainActivity.menuOk = false;
@@ -45,19 +52,30 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 	}
 
 	@Override
+	/**
+	 * Méthode permettant de gérér l'évenement onclick sur un bouton.
+	 */
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.connecter:
-			try {
-				boutonConnexion(v);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			break;
+		switch(v.getId()) {
+			//bouton "se connecter"
+			case R.id.connecter:
+				try {
+					boutonConnexion(v);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				break;
 		}
 		
 	}
 	
+	/**
+	 * Méthode qui permet de gérer la connexion.
+	 * Elle récupere l'identifiant et le mot de passe saisit par l'utilisateur et envoi ces informations
+	 * au format JSON, au serveur qui se charge de retourner la réponse au format JSON.
+	 * @param v
+	 * @throws JSONException
+	 */
 	public void boutonConnexion(View v) throws JSONException {
     	
     	TextView id = (TextView) this._view.findViewById(R.id.textIdentifiant);

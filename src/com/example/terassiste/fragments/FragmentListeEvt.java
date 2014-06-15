@@ -30,6 +30,10 @@ import com.example.terassiste.MainActivity;
 import com.example.terassiste.R;
 import com.example.terassiste.http.AsynJsonHttp;
 
+/**
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ * Classe permettant de donner la liste des événements en base (fragment)
+ */
 public class FragmentListeEvt extends Fragment {
 
 	

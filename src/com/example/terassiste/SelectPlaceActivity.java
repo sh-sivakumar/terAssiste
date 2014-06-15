@@ -14,6 +14,10 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.FrameLayout;
 
+/**
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ * Classe qui permet de gerer le systeme de positionnement du PMR.
+ */
 public class SelectPlaceActivity extends Activity {
 	
 	PlaceSelectPopupWindow popupWindow;
@@ -59,7 +63,7 @@ public class SelectPlaceActivity extends Activity {
 		popupWindow.setWidth((int) (getWindowManager().getDefaultDisplay().getWidth() / 1.5));
 		popupWindow.setHeight(250);
 		popupWindow.showAtLocation(findViewById(R.id.place_selection_layout), Gravity.CENTER
-				| Gravity.BOTTOM, 0, 0);//ÐèÒªÖ¸¶¨Gravity£¬Ä¬ÈÏÇé¿öÊÇcenter.
+				| Gravity.BOTTOM, 0, 0);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gravityï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½center.
 		popupWindow.SetOnSubmitListener(new OnClickListener(){
 
 			@Override
@@ -73,7 +77,7 @@ public class SelectPlaceActivity extends Activity {
 				
 				// TODO Auto-generated method stub
 				Log.i("LG", "Select raw point at "+targetPoint.toString()+", the converted point at:"+convertedTargetPoint.toString()+", with planscale:"+view.getPlanScale());
-				//Construire les données à retourner
+				//Construire les donnï¿½es ï¿½ retourner
 				Intent returnIntent = new Intent();
 				returnIntent.putExtra("x", convertedTargetPoint.x);
 				returnIntent.putExtra("y", convertedTargetPoint.y);

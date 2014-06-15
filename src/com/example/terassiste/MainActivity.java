@@ -25,6 +25,10 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ * Classe principale, qui permet de gérer l'application.
+ */
 @TargetApi(Build.VERSION_CODES.KITKAT)
 @SuppressLint("NewApi")
 public class MainActivity extends FragmentActivity {
@@ -40,13 +44,16 @@ public class MainActivity extends FragmentActivity {
 	public static final int	FRAGMENT_CREATE_EVT		= 3;
 	
 	private Agent utilisateur;
-	//String login;
 	private List<String> _liste_numTrain = new ArrayList<String>();
 	
     OnPositionSelectOneShotListener positionSelectListener = null;
 	
 	@SuppressLint("NewApi")
 	@Override
+	/**
+	 * Méthode se déclenchant à la création de l'activity.
+	 * Elle crée la barre d'action (haut) et appelle le fragment connexion.
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -62,10 +69,19 @@ public class MainActivity extends FragmentActivity {
 		this.switchFragment(new FragmentConnexion());
 	}
 	
+	/**
+	 * Méthode qui permet recoit en parametre une liste de train et qui affecte ce dernier
+	 * à la variable : _liste_numTrain
+	 * @param listeNumTrain
+	 */
 	public void setListNumTrain(List<String> listeNumTrain){
 		this._liste_numTrain = listeNumTrain;
 	}
 	
+	/**
+	 * Fonction qui renvoie une liste de train
+	 * @return _liste_numTrain
+	 */
 	public List<String> getListNumTrain(){
 		return _liste_numTrain;
 	}
@@ -126,6 +142,11 @@ public class MainActivity extends FragmentActivity {
 		return true;
 	}
 
+	/**
+	 * Cette méthode recoit en parametre un fragment et se charge de "switcher" du fragment courant vers
+	 * le fragment en parametre.
+	 * @param fragment
+	 */
 	public void switchFragment(Fragment fragment) {
 		android.support.v4.app.FragmentTransaction transaction = this._fm.beginTransaction();
 		transaction.replace(R.id.fragment_main, fragment);
@@ -133,11 +154,17 @@ public class MainActivity extends FragmentActivity {
 		transaction.commit();
 	}
 
+	/**
+	 * Méthode permettant de fermer le slide menu.
+	 */
 	public void closeSlideMenu() {
 		this._drawerLayout.closeDrawer(Gravity.LEFT);
 		Log.i("LJ", "Close slide menu");
 	}
 
+	/**
+	 * Méthode permettant d'ouvrir le slide menu.
+	 */
 	public void openSlideMenu() {
 		this._drawerLayout.openDrawer(Gravity.LEFT);
 		Log.i("LJ", "Open slide menu");
@@ -167,17 +194,5 @@ public class MainActivity extends FragmentActivity {
 
 	public void setUtilisateur(Agent utilisateur) {
 		this.utilisateur = utilisateur;
-	}
-    
-    
-    /*
-    public void setLogin(String login) {
-    	this.login = login;
-    }
-    
-    public String getLogin() {
-    	return this.login;
-    }
-    */
-    	   
+	}    	   
 }

@@ -22,6 +22,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ * Classe permettant de gerer le systeme de detail d'un événement (fragment)
+ */
 public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	private int idEvenement;
 	private String nom;
@@ -115,6 +119,10 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		return this._view;
 	}
 	
+	/**
+	 * Méthode qui remplit les informations sur l'évenement, avec le JSON reçut en parametre.
+	 * @param jsonReturn
+	 */
 	public void fillForm(JSONObject jsonReturn) {
 		try {
 			TextView name = (TextView) this._view.findViewById(R.id.name_pmr);
@@ -168,7 +176,6 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				FragmentDetailEvt.this._parentActivity.ViewPlaceOnTheMap(
 						null, 
 						FragmentDetailEvt.this.position,
@@ -179,6 +186,9 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	}
 
 	@Override
+	/**
+	 * Méthode permettant de gérér l'évenement onclick sur un bouton.
+	 */
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.evt_modif:
@@ -192,6 +202,9 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		
 	}
 	
+	/**
+	 * Méthode qui permet de supprimer l'évenement, via un appel au serveur.
+	 */
 	public void deleteEvt() {
 		JSONObject jsonObject= new JSONObject();
 		try {

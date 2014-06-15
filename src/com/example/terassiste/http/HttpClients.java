@@ -17,6 +17,9 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+/**
+ * Classe permettant de gerer la connection a la base de donnees.
+ */
 public class HttpClients {
 	private static final String TAG = "HttpClient";
 

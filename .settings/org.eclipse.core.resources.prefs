@@ -1,2 +1,12 @@
 eclipse.preferences.version=1
+encoding//src/com/example/terassiste/MainActivity.java=UTF-8
 encoding//src/com/example/terassiste/PlaceSelect/PlaceSelectionView.java=UTF-8
+encoding//src/com/example/terassiste/SelectPlaceActivity.java=UTF-8
+encoding//src/com/example/terassiste/fragments/FragmentConnexion.java=UTF-8
+encoding//src/com/example/terassiste/fragments/FragmentCreateEvt.java=UTF-8
+encoding//src/com/example/terassiste/fragments/FragmentDetailEvt.java=UTF-8
+encoding//src/com/example/terassiste/fragments/FragmentListeEvt.java=UTF-8
+encoding//src/com/example/terassiste/fragments/FragmentModifEvt.java=UTF-8
+encoding//src/com/example/terassiste/http/AsynJsonHttp.java=UTF-8
+encoding//src/com/example/terassiste/http/HttpClients.java=UTF-8
+encoding//src/com/example/terassiste/views/MainSlideMenu.java=UTF-8

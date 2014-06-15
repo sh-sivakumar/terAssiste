@@ -1,10 +1,13 @@
 package com.example.terassiste.http;
 
 import org.json.JSONObject;
-
 import android.os.AsyncTask;
-import android.util.Log;
 
+/**
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ * Classe qui cree un thread en parallele du thread principal et qui appelle la classe permettant de gerer
+ * la connection a un serveur.
+ */
 public class AsynJsonHttp extends AsyncTask<JSONObject, Integer, JSONObject>{
 	
 	private String url;
