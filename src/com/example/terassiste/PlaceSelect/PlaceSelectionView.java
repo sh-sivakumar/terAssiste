@@ -67,7 +67,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 	}
 	/**
 	 * Si la carte est readOnly
-	 * @return
+	 * @return isReadOnly
 	 */
 	public boolean isReadOnly(){
 		return this.isReadOnly;
@@ -311,7 +311,7 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 	 * Calculer la position relative
 	 * @param width
 	 * @param height
-	 * @return
+	 * @return point
 	 */
 	private Point calculRelativeCentralPoint(int width, int height) {
 		Point point = new Point();

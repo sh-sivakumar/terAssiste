@@ -20,7 +20,7 @@ public class Agent extends Personne {
 
 	/**
 	 * Recupere le login
-	 * @return
+	 * @return login
 	 */
 	public String getLogin() {
 		return this.login;

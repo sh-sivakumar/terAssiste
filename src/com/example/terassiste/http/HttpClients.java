@@ -28,7 +28,7 @@ public class HttpClients {
 	 * Fait un appel au serveur, en envoyant au serveur un JSON
 	 * @param URL
 	 * @param jsonObjSend
-	 * @return
+	 * @return JSONObject
 	 */
 	public static JSONObject SendHttpPost(String URL, JSONObject jsonObjSend) {
 
