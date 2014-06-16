@@ -42,7 +42,7 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	private static final String URL 				= "http://terassistee.netai.net/detailevent.php";
 	private static final String URL_delete 			= "http://terassistee.netai.net/deleteEvent.php";
 	
-	public FragmentDetailEvt(int id, String nom, String prenom, String train, Point pos) {
+	public FragmentDetailEvt(int id, Point pos) {
 		this.idEvenement = id;
 		this.position = pos;
 		
@@ -87,6 +87,12 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		return this._view;
 	}
 	
+	/**
+	 * Methode qui appelle le serveur en envoyant un JSON avec l'id de l'evenement
+	 * Le serveur renvoye un JSON avec les informations sur l'evenement desires.
+	 * @param inflater
+	 * @param container
+	 */
 	public void getEvtDetail(LayoutInflater inflater, ViewGroup container) {
 		JSONObject jsonObject= new JSONObject();
 		try {
@@ -95,7 +101,7 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 			e.printStackTrace();
 		}
 		
-		AsynJsonHttp thread = new AsynJsonHttp(URL);
+		AsynJsonHttp thread = new AsynJsonHttp(URL, this._parentActivity);
 		thread.execute(jsonObject);
 		JSONObject jsonReturn = null;
 		try {
@@ -184,6 +190,10 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		buttonConsult.setOnClickListener(new OnClickListener(){
 
 			@Override
+			/**
+			 * Lorsque l'utilisateur clique sur le bouton 'Position du PMR',
+			 * l'application se charge d'afficher le plan avec le positionnement du PMR
+			 */
 			public void onClick(View v) {
 				FragmentDetailEvt.this._parentActivity.ViewPlaceOnTheMap(
 						null, 
@@ -199,14 +209,16 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 	 * Methode permettant de gerer l'evenement onclick sur un bouton.
 	 */
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.evt_modif:
-			this._parentActivity.switchFragment(new FragmentModifEvt(this.idEvenement));
-			break;
-		case R.id.evt_end:
-			deleteEvt();
-			this._parentActivity.switchFragment(new FragmentListeEvt());
-			break;
+		switch(v.getId()) {
+			//Au clic sur le bouton 'Modifier l'evenement'
+			case R.id.evt_modif:
+				this._parentActivity.switchFragment(new FragmentModifEvt(this.idEvenement));
+				break;
+			//Au clic sur le bouton 'Cloturer l'evenement'
+			case R.id.evt_end:
+				deleteEvt();
+				this._parentActivity.switchFragment(new FragmentListeEvt());
+				break;
 		}
 		
 	}
@@ -222,7 +234,7 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 			e.printStackTrace();
 		}
 		
-		AsynJsonHttp thread = new AsynJsonHttp(URL_delete);
+		AsynJsonHttp thread = new AsynJsonHttp(URL_delete, this._parentActivity);
 		thread.execute(jsonObject);
 		JSONObject jsonReturn = null;
 		try {

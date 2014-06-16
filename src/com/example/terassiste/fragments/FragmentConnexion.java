@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.example.terassiste.MainActivity;
 import com.example.terassiste.R;
 import com.example.terassiste.http.AsynJsonHttp;
+import com.example.terassiste.http.OnDataReturnListener;
 import com.example.terassiste.metier.Agent;
 
 import android.app.Activity;
@@ -89,29 +90,35 @@ public class FragmentConnexion extends Fragment implements OnClickListener {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
-		AsynJsonHttp thread = new AsynJsonHttp(URL);
-		thread.execute(jsonObject);
-		try {
-			JSONObject jsonReturn = thread.get();
-			Log.i(TAG, "test: "+jsonReturn.toString());
-			if(jsonReturn.getBoolean("result")) {
-				//this._mainActivity.setLogin(id.getText().toString());
-				
-				String nom = jsonReturn.getString("nom");;
-				String prenom = jsonReturn.getString("prenom");
-				String login = id.getText().toString();
-				Agent utilisateur = new Agent(nom, prenom, login);
-				this._mainActivity.setUtilisateur(utilisateur);
-				
-				this._mainActivity.switchFragment(new FragmentListeEvt());
-			}
 
-			Log.i(TAG, "test: "+jsonReturn.toString());
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
+		AsynJsonHttp thread = new AsynJsonHttp(URL, this._mainActivity);
+		thread.setDataListener(new OnDataReturnListener(){
+
+			@Override
+			public void OnDataReturn(JSONObject jsonReturn) {
+				try {
+					Log.i(TAG, "test: "+jsonReturn.toString());
+					if(jsonReturn.getBoolean("result")) {
+						//this._mainActivity.setLogin(id.getText().toString());
+						
+						String nom = jsonReturn.getString("nom");;
+						String prenom = jsonReturn.getString("prenom");
+						TextView id =(TextView) FragmentConnexion.this._view.findViewById(R.id.textIdentifiant);
+						String login = id.getText().toString();
+						Agent utilisateur = new Agent(nom, prenom, login);
+						FragmentConnexion.this._mainActivity.setUtilisateur(utilisateur);
+						
+						FragmentConnexion.this._mainActivity.switchFragment(new FragmentListeEvt());
+					}
+
+					Log.i(TAG, "test: "+jsonReturn.toString());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		thread.execute(jsonObject);
     }
 }

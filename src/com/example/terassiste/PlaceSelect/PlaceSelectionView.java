@@ -24,6 +24,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
+/**
+ * La view qui permet d'afficher et rafraichier le plan
+ * @author Sinthu
+ *
+ */
 public class PlaceSelectionView extends SurfaceView implements Callback,
 		Runnable {
 
@@ -60,7 +65,10 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		this.workThread = new Thread(this);
 		
 	}
-	
+	/**
+	 * Si la carte est readOnly
+	 * @return
+	 */
 	public boolean isReadOnly(){
 		return this.isReadOnly;
 	}
@@ -70,27 +78,51 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		Log.i("LG", "Place selection view set to read ONLY");
 		
 	}
-
+	
+	/**
+	 * 
+	 * @return Le nombre de frame par second
+	 */
 	public int getFPS() {
 		return this.FPS;
 	}
-
+	
+	/**
+	 * 
+	 * @return Le decalage de plan par rapport a l'ecran
+	 */
 	public Point getPlanOffset() {
 		return this.planOffset;
 	}
-
+	
+	/**
+	 * 
+	 * @return Scale of plan
+	 */
 	public float getPlanScale() {
 		return this.planScale;
 	}
 
+	/**
+	 * 
+	 * @return L'object Bitmap de plan
+	 */
 	public Bitmap getPlan() {
 		return this.plan;
 	}
 	
+	/**
+	 * 
+	 * @return La position
+	 */
 	public Point getTargetPoint(){
 		return this.targetDrawer.GetCenterPoint();
 	}
 	
+	/**
+	 * Convertit la postion sur l'ecran et retourne la vrai position 
+	 * @return retourne la vrai postion par rapport au plan 
+	 */
 	public Point getConvertedTargetPoint(){
 		Point point =new Point( this.targetDrawer.GetCenterPoint().x, this.targetDrawer.GetCenterPoint().y);
 		
@@ -103,10 +135,16 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		return point;
 	}
 	
+	/**
+	 * 
+	 * Afficher le menu
+	 */
 	public void ShowPopupWindow(){
 		this.context.ShowPopupWindow();
 	}
-	
+	/**
+	 * Dissimuler le menu
+	 */
 	public void HidePopupWindow(){
 		this.context.HidePopupWindow();
 	}
@@ -164,6 +202,9 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		this.StopRedraw();
 	}
 
+	/**
+	 * Fonction qui dessine sans arret le plan
+	 */
 	@Override
 	public void run() {
 		while (continueToWork) {
@@ -186,6 +227,9 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		}
 	}
 
+	/**
+	 * Dessiner le plan
+	 */
 	private void redraw() {
 		synchronized (this.holder) {
 			Canvas canvas = this.holder.lockCanvas();
@@ -217,7 +261,11 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 			this.holder.unlockCanvasAndPost(canvas);
 		}
 	}
-
+	
+	/**
+	 * Deplacer le plan 
+	 * @param y La nouvelle decalage par rapport a l'ecran
+	 */
 	public void ScrollPlan(int y) {
 		int dy = y;
 		int oldY = this.planOffset.y;
@@ -237,6 +285,11 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		}
 	}
 
+	/**
+	 * Bouger la postiion par rapport a l'ecran
+	 * @param relativeX
+	 * @param relativeY
+	 */
 	public void moveTargetBoxToRelativeScreen(int relativeX, int relativeY) {
 		if (this.targetDrawer == null) {
 			this.targetDrawer = new PlaceTargetDrawer(this, relativeX, relativeY);
@@ -245,10 +298,21 @@ public class PlaceSelectionView extends SurfaceView implements Callback,
 		}
 	}
 	
+	/**
+	 * Definier la position par default de la vue
+	 * @param rawXrelativeToMap
+	 * @param rawYrelativeToMap
+	 */
 	public void setTargetBoxBeginPosition(int rawXrelativeToMap, int rawYrelativeToMap){
 		this.targetDrawerBeginPlace = new Point(rawXrelativeToMap, rawYrelativeToMap);
 	}
 
+	/**
+	 * Calculer la position relative
+	 * @param width
+	 * @param height
+	 * @return
+	 */
 	private Point calculRelativeCentralPoint(int width, int height) {
 		Point point = new Point();
 

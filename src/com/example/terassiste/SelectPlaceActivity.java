@@ -51,7 +51,9 @@ public class SelectPlaceActivity extends Activity {
 			view.setTargetBoxBeginPosition(x, y);
 		}
 	}
-
+	/**
+	 * Fonction permet d'afficher le menu afin de selectionner la position
+	 */
 	public void ShowPopupWindow(){
 		if(this.isReadOnly)
 		{
@@ -96,7 +98,9 @@ public class SelectPlaceActivity extends Activity {
 		}
 		this.view.StopRedraw();
 	}
-	
+	/**
+	 * Dissimuler le menu popup
+	 */
 	public void HidePopupWindow(){
 		if(this.isReadOnly){
 			return ;

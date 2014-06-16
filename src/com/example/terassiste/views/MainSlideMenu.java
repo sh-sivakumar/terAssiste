@@ -41,6 +41,9 @@ public class MainSlideMenu extends LinearLayout implements OnClickListener{
 	}
 
 	@Override
+	/**
+	 * Option du menu, au clic..
+	 */
 	public void onClick(View v) {
 		Log.i("LJ", "Click on the slide menu");
 		switch(v.getId()){

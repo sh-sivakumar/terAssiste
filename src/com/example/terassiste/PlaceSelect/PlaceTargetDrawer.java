@@ -8,6 +8,11 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.BlurMaskFilter.Blur;
 
+/**
+ * Classe qui permet de dessiner la place selectionnee
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ *
+ */
 public class PlaceTargetDrawer {
 	
 	private Point centerPoint;//
@@ -23,6 +28,10 @@ public class PlaceTargetDrawer {
 		this._v = view;
 	}
 	
+	/**
+	 * Dessiner la position
+	 * @param canvas
+	 */
 	public void Draw(Canvas canvas){
 
 		Rect rectangle = new Rect();
@@ -49,6 +58,10 @@ public class PlaceTargetDrawer {
 		canvas.drawRect(rectangle, paint);
 	}
 	
+	/**
+	 * 
+	 * @return Cordonne de la position
+	 */
 	public Point GetCenterPoint(){
 		return this.centerPoint;
 	}

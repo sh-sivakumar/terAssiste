@@ -6,6 +6,11 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
+/**
+ * Listener herite de OnTouchListener pour SelectPlaceActivity
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ *
+ */
 public class PlaceSelectTouchListener implements OnTouchListener {
 	private PlaceSelectionView view;
 	private static int CLICK_MARGIN = 50;// Il faut effectuer une manoeuvre de 50 pixel pour

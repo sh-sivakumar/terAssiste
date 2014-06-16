@@ -24,6 +24,12 @@ import android.util.Log;
 public class HttpClients {
 	private static final String TAG = "HttpClient";
 
+	/**
+	 * Fait un appel au serveur, en envoyant au serveur un JSON
+	 * @param URL
+	 * @param jsonObjSend
+	 * @return
+	 */
 	public static JSONObject SendHttpPost(String URL, JSONObject jsonObjSend) {
 
 		JSONObject errorJSONobj = new JSONObject();
@@ -71,7 +77,6 @@ public class HttpClients {
 		try {
 			errorJSONobj.putOpt("error", errorMessage);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -79,8 +79,12 @@ public class FragmentListeEvt extends Fragment {
         return _view;
     }
     
+    /**
+     * Appel au serveur, ce dernier renvoye un JSON avec les informations sur les evenements en cours
+     * @return List<Map<String, Object>>
+     * @throws JSONException
+     */
 	public List<Map<String, Object>> fetchAllData() throws JSONException {
-		
 		
 		JSONObject object = new JSONObject();
 		/* ----- Debut : Test JSON ----- */
@@ -158,7 +162,7 @@ public class FragmentListeEvt extends Fragment {
 		*/
 		/* ----- Fin : Test JSON ----- */
 		
-		AsynJsonHttp thread = new AsynJsonHttp(URL);
+		AsynJsonHttp thread = new AsynJsonHttp(URL, this._mainActivity);
 		thread.execute(object);
 		try {
 			object = thread.get();
@@ -189,13 +193,17 @@ public class FragmentListeEvt extends Fragment {
 		return data;
 	}
 	
+	/**
+	 * Classe interne, permettant de gerer les clics sur un PMR
+	 * @author Shinthujan, Jian, Walid, Wally, Youssef
+	 */
 	private class OnMainItemClickListener implements OnClickListener {
 		int idEvenement;
 		String train;
 		String nom;
 		String prenom;
 		Point position;
-		
+
 		public OnMainItemClickListener(int id, String train, String nom, String prenom, Point pos) {
 			this.idEvenement = id;
 			this.train = train;
@@ -205,12 +213,19 @@ public class FragmentListeEvt extends Fragment {
 		}
 
 		@Override
+		/**
+		 * Lorsque l'utilisateur clic sur le nom d'un PMR, l'application cree un FragmentDetailEvt
+		 */
 		public void onClick(View v) {
 			Log.i("LG", "TEST = Bouton clique ->" + nom + " " + prenom + " - train: "+ train);
-			_mainActivity.switchFragment(new FragmentDetailEvt(this.idEvenement, this.nom, this.prenom, this.train, this.position));
+			_mainActivity.switchFragment(new FragmentDetailEvt(this.idEvenement, this.position));
 		}
 	}
     
+	/**
+	 * Classe qui permet de construire un menu deroulant
+	 * @author Shinthujan, Jian, Walid, Wally, Youssef
+	 */
     public class ELVAdapter extends BaseExpandableListAdapter {
     	 
         private List<Map<String, Object>> groupes;
@@ -230,6 +245,9 @@ public class FragmentListeEvt extends Fragment {
             return cPosition;
         }
      
+        /**
+         * Methode qui permet de recuperer, le nom du PMR courant
+         */
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
             final Object name = (Object) getChild(groupPosition, childPosition);
      
@@ -252,6 +270,13 @@ public class FragmentListeEvt extends Fragment {
             return convertView;
         }
         
+        /**
+         * Lors d'un clic sur le nom d'un PMR, l'on recupere les informations sur l'evenement
+         * et l'on cree l'evenement.
+         * @param groupPosition
+         * @param childPosition
+         * @param convertView
+         */
         public void clickBoutonElmt(int groupPosition, int childPosition, View convertView) {
         	Map<String, Object> map = (Map<String, Object>) groupes.get(groupPosition);
         	String train = map.get("train").toString();
@@ -277,6 +302,9 @@ public class FragmentListeEvt extends Fragment {
             return gPosition;
         }
      
+        /**
+         * Permet de recuperer les informations sur les trains en route, ainsi que le nombre de PMR a bord.
+         */
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
             GroupViewHolder gholder;
      
@@ -319,12 +347,21 @@ public class FragmentListeEvt extends Fragment {
         }
         
 		@Override
+		/**
+		 * Retourne le nom et le prenom du PMR
+		 */
 		public Object getChild(int groupPosition, int childPosition) {
 			String nom = getNomPMR(groupPosition, childPosition);
 			String prenom = getPrenomPMR(groupPosition, childPosition);
 			return nom + " " + prenom;
 		}
 		
+		/**
+		 * Retourne l'id de l'evenement courant
+		 * @param groupPosition
+		 * @param childPosition
+		 * @return int
+		 */
 		public int getIdEvenement(int groupPosition, int childPosition) {
 			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
 			JSONObject obj = null;
@@ -342,6 +379,12 @@ public class FragmentListeEvt extends Fragment {
 			return -1;
 		}
 		
+		/**
+		 * Retourne le nom du PMR courant
+		 * @param groupPosition
+		 * @param childPosition
+		 * @return String
+		 */
 		public String getNomPMR(int groupPosition, int childPosition) {
 			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
 			JSONObject obj = null;
@@ -359,6 +402,12 @@ public class FragmentListeEvt extends Fragment {
 			return null;
 		}
 		
+		/**
+		 * Retourne le prenom du PMR courant
+		 * @param groupPosition
+		 * @param childPosition
+		 * @return String
+		 */
 		public String getPrenomPMR(int groupPosition, int childPosition) {
 			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
 			JSONObject obj = null;
@@ -376,6 +425,12 @@ public class FragmentListeEvt extends Fragment {
 			return null;
 		}
 		
+		/**
+		 * Retourne la position du PMR courant
+		 * @param groupPosition
+		 * @param childPosition
+		 * @return Point
+		 */
 		public Point getPositionPMR(int groupPosition, int childPosition){
 
 			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
@@ -397,6 +452,9 @@ public class FragmentListeEvt extends Fragment {
 		}
 
 		@Override
+		/**
+		 * Retourne le nombre de PMR dans le train X (groupPosition)
+		 */
 		public int getChildrenCount(int groupPosition) {
 			JSONArray pmr = (JSONArray) groupes.get(groupPosition).get("pmr");
 			return pmr.length();

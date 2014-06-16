@@ -163,7 +163,7 @@ public class FragmentCreateEvt extends Fragment implements OnClickListener {
 			e.printStackTrace();
 		}
 		
-		AsynJsonHttp thread = new AsynJsonHttp(URL);
+		AsynJsonHttp thread = new AsynJsonHttp(URL, this._parentActivity);
 		thread.execute(jsonObject);
 		JSONObject jsonReturn = null;
 		try {

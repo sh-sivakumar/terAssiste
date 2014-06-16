@@ -135,13 +135,6 @@ public class MainActivity extends FragmentActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 	/**
 	 * Cette methode recoit en parametre un fragment et se charge de "switcher" du fragment courant vers
 	 * le fragment en parametre.
@@ -171,6 +164,12 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 
+	/**
+	 * Permet d'afficher le plan du train, ainsi que la place du client (PMR)
+	 * @param listener
+	 * @param oldPoint
+	 * @param readOnly
+	 */
     public void ViewPlaceOnTheMap(OnPositionSelectOneShotListener listener, Point oldPoint, boolean readOnly){
 		Intent switchActivityIntent = new Intent(this, SelectPlaceActivity.class);
 		int requestCode;
@@ -188,10 +187,18 @@ public class MainActivity extends FragmentActivity {
 		this.startActivityForResult(switchActivityIntent, requestCode);
     }
 
+    /**
+     * Permet de recuperer l'utilisateur de l'application (Agent)
+     * @return Agent
+     */
 	public Agent getUtilisateur() {
 		return this.utilisateur;
 	}
 
+	/**
+	 * Affecte a la variable utilisateur, l'agent utilisant l'application
+	 * @param utilisateur
+	 */
 	public void setUtilisateur(Agent utilisateur) {
 		this.utilisateur = utilisateur;
 	}    	   

@@ -10,6 +10,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
+/**
+ * La classe menu pour SelectionActivity
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ *
+ */
 public class PlaceSelectPopupWindow extends PopupWindow{
 	
 	Button btn;
