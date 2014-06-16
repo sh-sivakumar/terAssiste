@@ -1,5 +1,9 @@
 package com.example.terassiste.metier;
 
+/**
+ * Cette classe permet de gerer un itineraire, avec une gare de depart et une gare d'arrivee
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ */
 public class Assistance {
 	private String depart;
 	private String arrivee;

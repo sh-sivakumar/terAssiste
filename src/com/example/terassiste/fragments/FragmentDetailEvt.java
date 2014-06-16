@@ -82,6 +82,12 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		*/
 		/* ----- Fin : Test JSON ----- */
 		
+		getEvtDetail(inflater, container);
+		
+		return this._view;
+	}
+	
+	public void getEvtDetail(LayoutInflater inflater, ViewGroup container) {
 		JSONObject jsonObject= new JSONObject();
 		try {
 			jsonObject.put("idEvent", this.idEvenement);
@@ -115,7 +121,6 @@ public class FragmentDetailEvt extends Fragment implements OnClickListener {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return this._view;
 	}
 	
 	/**

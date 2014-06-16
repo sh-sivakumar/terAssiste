@@ -1,16 +1,20 @@
 package com.example.terassiste.metier;
 
+/**
+ * Classe permet de gerer un evenement
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ */
 public class Evenement {
 	private Client client;
 	private String numTrain;
-	private String agent;
+	private String loginAgent;
 	private Assistance assistance;
 	
 	public Evenement(Client client, String numT, String ag, Assistance assistance){
 		this.client = client;
 		this.numTrain = numT;
 		this.assistance = assistance;
-		this.agent = ag;
+		this.loginAgent = ag;
 	}
 
 	public Client getClient() {
@@ -30,11 +34,11 @@ public class Evenement {
 	}
 
 	public String getAgent() {
-		return agent;
+		return loginAgent;
 	}
 
 	public void setAgent(String agent) {
-		this.agent = agent;
+		this.loginAgent = agent;
 	}
 
 	public Assistance getAssistance() {

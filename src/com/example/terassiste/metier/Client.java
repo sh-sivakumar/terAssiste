@@ -1,5 +1,9 @@
 package com.example.terassiste.metier;
 
+/**
+ * Classe heritant de Personne, cette classe permet de gerer les clients (PMR)
+ * @author Shinthujan, Jian, Walid, Wally, Youssef
+ */
 public class Client extends Personne {
 	private String numClient;
 	private String contactExterneClient;
